@@ -6,6 +6,7 @@ import Signup from "./pages/signup-page.jsx";
 import Search from "./pages/search-page.jsx";
 import EditProfile from "./pages/profile-page.jsx";
 
+
 function App() {
   return (
     <div>
