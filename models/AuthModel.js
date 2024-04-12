@@ -12,4 +12,4 @@ const auth = new Schema ({
   },
 })
 
-module.exportd = mongoose.model ('AuthModel', auth);
+module.exports = mongoose.model ('AuthModel', auth);
