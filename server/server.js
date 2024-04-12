@@ -40,8 +40,9 @@ app.get('/home', (req, res) => {
 
 app.get('/editprofile', (req, res) => {
   console.log('inside EDIT PROFILE route');
-  return res.status(200).json('Response from edit profile');
+  return res.status(200).sendFile(path.join(__dirname, '/profile-page'));
 });
+
 
 // Default middleware error
 app.use((req, res, next) => {
