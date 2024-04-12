@@ -4,7 +4,6 @@ import { createRoot } from "react-dom/client";
 import Login from "./pages/login-page.jsx";
 import Signup from "./pages/signup-page.jsx";
 import Search from "./pages/search-page.jsx";
-import EditProfile from "./pages/profile-page.jsx";
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/home" element={<Search />}></Route>
-          <Route path="/editprofile" element={<EditProfile />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

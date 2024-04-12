@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './client/app.js',
+  entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
@@ -34,7 +34,7 @@ module.exports = {
         use: ['file-loader']
       }
     ],
-  }, 
+  },
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'build'),
