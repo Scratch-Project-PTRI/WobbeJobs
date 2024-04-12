@@ -43,6 +43,7 @@ app.get('/editprofile', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '/profile-page'));
 });
 
+
 // Default middleware error
 app.use((req, res, next) => {
   const error = new Error('Middleware Error - Not Found');
