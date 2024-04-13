@@ -58,11 +58,12 @@ const puppeteer = require('puppeteer');
 
 (async () => {
     const browser = await puppeteer.launch({
-        headless: false
+        headless: false,
+        defaultViewport: false,
     });
 
     const page = await browser.newPage();
-    await page.goto('https://www.ziprecruiter.com/jobs-search');
+    await page.goto('https://www.ziprecruiter.com/jobs-search?search=software+engineer&location=remote&radius=25');
 
     // Wait for the job title elements to appear on the page
     // await page.waitForSelector('.font-bold.text-black');
@@ -75,7 +76,7 @@ const puppeteer = require('puppeteer');
         jobNodes.forEach(node => {
             jobTitles.push(node.textContent.trim());
         });
-        // return jobTitles;
+        return jobTitles;
     });
 
     console.log(jobs);
@@ -86,24 +87,38 @@ const puppeteer = require('puppeteer');
         priceNodes.forEach(node => {
             priceTitles.push(node.textContent.trim());
         });
-        //return priceTitles;
+        return priceTitles;
     });
 
     console.log(prices);
 
      
-    const quickApplys = await page.evaluate(() => {
-        const quickApplyNodes = document.querySelectorAll("a");
-        const quickApplyLinks = [];
-        quickApplyNodes.forEach(button => {
+    // const quickApplys = await page.evaluate(() => {
+    //     const quickApplyNodes = document.querySelectorAll("a");
+    //     const quickApplyLinks = [];
+    //     quickApplyNodes.forEach(button => {
 
-          quickApplyLinks.push(quickApplyNodes.getAttribute("href"));
+    //       quickApplyLinks.push(quickApplyNodes.getElementById("a"));
             
-        });
+    //     });
+    //     return quickApplyLinks;
+    // });
+
+    const quickApplys = await page.evaluate(() => {
+        const quickApplyNodes = document.getElementsByTagName("a");
+        const quickApplyLinks = [];
+    
+        for (let i = 0; i < quickApplyNodes.length; i++) {
+            const href = quickApplyNodes[i].getAttribute("href");
+            quickApplyLinks.push(href);
+        }
+        
         return quickApplyLinks;
     });
 
-     console.log(quickApplys);
+   // const hrefs = await page.$eval("a.link", (elm) => elm.href);
+
+   console.log(quickApplys);
 
     await browser.close();
 })();
