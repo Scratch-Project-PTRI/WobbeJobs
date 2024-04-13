@@ -53,7 +53,7 @@
 
 // //returns empty obj
 
-
+//href scraping doesnt work, but title and price do so far
 const puppeteer = require('puppeteer');
 
 (async () => {
@@ -107,3 +107,4 @@ const puppeteer = require('puppeteer');
 
     await browser.close();
 })();
+
