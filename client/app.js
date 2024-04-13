@@ -7,6 +7,7 @@ import Search from './pages/search-page.jsx';
 import EditProfile from './pages/profile-page.jsx';
 import './styles.css';
 
+
 function App() {
   return (
     <div className="">
