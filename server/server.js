@@ -48,7 +48,7 @@ app.post('/signup', authController.createUser, (req, res) => {
 
 app.get('/home', (req, res) => {
   console.log('inside HOME route');
-  return res.status(200).json('Response from home');
+  return res.status(200).sendFile(path.join(__dirname, '/search-page'));
 });
 
 app.get('/editprofile', (req, res) => {
