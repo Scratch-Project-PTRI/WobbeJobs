@@ -52,7 +52,7 @@
 
 // //returns empty obj
 
-//href scraping doesnt work, but title and price do so far
+//scrapes all three and console logs them as separate arrays
 const puppeteer = require("puppeteer");
 
 (async () => {
@@ -107,13 +107,17 @@ const puppeteer = require("puppeteer");
 
   const quickApplys = await page.evaluate(() => {
     const quickApplyNodes = document.getElementsByTagName("a");
-    console.log(quickApplyNodes)
+    console.log(quickApplyNodes);
     const quickApplyLinks = [];
     for (let i = 0; i < quickApplyNodes.length; i++) {
-        const href = quickApplyNodes[i].getAttribute("href");
-        if (href && href.startsWith("https://www.ziprecruiter.com/") && !href.startsWith("https://www.ziprecruiter.com/jobs-search?")) {
-            quickApplyLinks.push(href);
-        }
+      const href = quickApplyNodes[i].getAttribute("href");
+      if (
+        href &&
+        href.startsWith("https://www.ziprecruiter.com/") &&
+        !href.startsWith("https://www.ziprecruiter.com/jobs-search?")
+      ) {
+        quickApplyLinks.push(href);
+      }
     }
 
     return quickApplyLinks;
