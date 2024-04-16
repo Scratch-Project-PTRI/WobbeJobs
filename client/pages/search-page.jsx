@@ -61,16 +61,15 @@ function Search() {
         <input
           type="text"
           className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
-          placeholder="Enter your email..."
+          placeholder="Enter job title"
         />
       </div>
       <div className="mb-6">
-        <label className="block text-gray-700">Password:</label>
+        <label className="block text-gray-700">Location:</label>
         <input
           type="text"
-          name="password"
           className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          placeholder="Enter your password"
+          placeholder="Enter your Location"
         />
       </div>
       <button
