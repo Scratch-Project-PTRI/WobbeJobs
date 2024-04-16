@@ -6,7 +6,9 @@ const authController = require('./controllers/authController');
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://wilson7chen:codesmith@scratch.67upbfi.mongodb.net/?retryWrites=true&w=majority&appName=Scratch');
+mongoose.connect(
+  'mongodb+srv://wilson7chen:codesmith@scratch.67upbfi.mongodb.net/?retryWrites=true&w=majority&appName=Scratch'
+);
 
 mongoose.connection.once('open', () => {
   console.log('MONGO DB ---> Connected');
@@ -30,8 +32,8 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', authController.verifyUser, (req, res) => {
-  if(res.locals.incorrect) {
-    return res.status(401).json('Incorrect credentials')
+  if (res.locals.incorrect) {
+    return res.status(401).json('Incorrect credentials');
   } else {
     return res.status(200).json(res.locals.user);
   }
@@ -48,6 +50,11 @@ app.post('/signup', authController.createUser, (req, res) => {
 
 app.get('/home', (req, res) => {
   console.log('inside HOME route');
+  return res.status(200).sendFile(path.join(__dirname, '/search-page'));
+});
+
+app.get('/search', (req, res) => {
+  console.log('inside SEARCH route');
   return res.status(200).sendFile(path.join(__dirname, '/search-page'));
 });
 

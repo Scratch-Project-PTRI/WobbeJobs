@@ -182,7 +182,7 @@ const puppeteer = require('puppeteer');
 
   const page = await browser.newPage();
   await page.goto(
-    'https://www.ziprecruiter.com/jobs-search?search=software+engineer&location=remote&radius=25'
+    'https://www.ziprecruiter.com/jobs-search?search=carpenter&location=Clearwater%2C+FL&radius=25'
   );
 
   const data = await page.evaluate(() => {
