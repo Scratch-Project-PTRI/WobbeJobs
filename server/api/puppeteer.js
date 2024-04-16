@@ -53,73 +53,78 @@
 // //returns empty obj
 
 //href scraping doesnt work, but title and price do so far
-const puppeteer = require("puppeteer");
+// const puppeteer = require('puppeteer');
 
-(async () => {
-  const browser = await puppeteer.launch({
-    headless: false,
-    defaultViewport: false,
-  });
+// (async () => {
+//   const browser = await puppeteer.launch({
+//     headless: false,
+//     defaultViewport: false,
+//   });
 
-  const page = await browser.newPage();
-  await page.goto(
-    "https://www.ziprecruiter.com/jobs-search?search=software+engineer&location=remote&radius=25"
-  );
+//   const page = await browser.newPage();
+//   await page.goto(
+//     'https://www.ziprecruiter.com/jobs-search?search=software+engineer&location=remote&radius=25'
+//   );
 
-  // Wait for the job title elements to appear on the page
-  // await page.waitForSelector('.font-bold.text-black');
+//   // Wait for the job title elements to appear on the page
+//   // await page.waitForSelector('.font-bold.text-black');
 
-  // Extract job titles
-  const jobs = await page.evaluate(() => {
-    const jobNodes = document.querySelectorAll(
-      ".font-bold.text-black.text-header-sm"
-    );
-    const jobTitles = [];
-    jobNodes.forEach((node) => {
-      jobTitles.push(node.textContent.trim());
-    });
-    return jobTitles;
-  });
+//   // Extract job titles
+//   const jobs = await page.evaluate(() => {
+//     const jobNodes = document.querySelectorAll(
+//       '.font-bold.text-black.text-header-sm'
+//     );
+//     const jobTitles = [];
+//     jobNodes.forEach((node) => {
+//       jobTitles.push(node.textContent.trim());
+//     });
+//     return jobTitles;
+//   });
 
-  console.log(jobs);
+//   console.log(jobs);
 
-  const prices = await page.evaluate(() => {
-    const priceNodes = document.querySelectorAll(".mr-8");
-    const priceTitles = [];
-    priceNodes.forEach((node) => {
-      priceTitles.push(node.textContent.trim());
-    });
-    return priceTitles;
-  });
+//   const prices = await page.evaluate(() => {
+//     const priceNodes = document.querySelectorAll('.mr-8');
+//     const priceTitles = [];
+//     priceNodes.forEach((node) => {
+//       priceTitles.push(node.textContent.trim());
+//     });
+//     return priceTitles;
+//   });
 
-  console.log(prices);
+//   console.log(prices);
 
-  // const quickApplys = await page.evaluate(() => {
-  //     const quickApplyNodes = document.querySelectorAll("a");
-  //     const quickApplyLinks = [];
-  //     quickApplyNodes.forEach(button => {
+//   // const quickApplys = await page.evaluate(() => {
+//   //     const quickApplyNodes = document.querySelectorAll("a");
+//   //     const quickApplyLinks = [];
+//   //     quickApplyNodes.forEach(button => {
 
-  //       quickApplyLinks.push(quickApplyNodes.getElementById("a"));
+//   //       quickApplyLinks.push(quickApplyNodes.getElementById("a"));
 
-  //     });
-  //     return quickApplyLinks;
-  // });
+//   //     });
+//   //     return quickApplyLinks;
+//   // });
 
-  const quickApplys = await page.evaluate(() => {
-    const quickApplyNodes = document.getElementsByTagName("a");
-    console.log(quickApplyNodes)
-    const quickApplyLinks = [];
-    for (let i = 0; i < quickApplyNodes.length; i++) {
-        const href = quickApplyNodes[i].getAttribute("href");
-        if (href && href.startsWith("https://www.ziprecruiter.com/") && !href.startsWith("https://www.ziprecruiter.com/jobs-search?")) {
-            quickApplyLinks.push(href);
-        }
-    }
+//   const quickApplys = await page.evaluate(() => {
+//     const quickApplyNodes = document.getElementsByTagName('a');
+//     console.log(quickApplyNodes);
+//     const quickApplyLinks = [];
+//     for (let i = 0; i < quickApplyNodes.length; i++) {
+//       const href = quickApplyNodes[i].getAttribute('href');
+//       if (
+//         href &&
+//         href.startsWith('https://www.ziprecruiter.com/') &&
+//         !href.startsWith('https://www.ziprecruiter.com/jobs-search?')
+//       ) {
+//         quickApplyLinks.push(href);
+//       }
+//     }
 
-    return quickApplyLinks;
-  });
+//     return quickApplyLinks;
+//   });
 
-  console.log(quickApplys);
+//   console.log(quickApplys);
 
-  await browser.close();
-})();
+//   await browser.close();
+// })();
+//
