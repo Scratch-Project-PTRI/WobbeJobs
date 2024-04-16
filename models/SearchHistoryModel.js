@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const searchHistory = new Schema ({
   email : {
     type : String,
-    required : true
+    required : true,
+    unique: true
   },
   searchDate : {
     type : String,
@@ -20,4 +21,4 @@ const searchHistory = new Schema ({
   },
 })
 
-module.exports = mongoose.model ('SearchHistoryModel', searchHistory);
+module.exports = mongoose.model ('SearchHistory', searchHistory);
