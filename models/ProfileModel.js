@@ -12,7 +12,8 @@ const profile = new Schema ({
   },
   email : {
     type : String,
-    required : true
+    required : true,
+    unique: true
   },
   location : {
     type : String,
@@ -24,4 +25,4 @@ const profile = new Schema ({
   },
 })
 
-module.exports = mongoose.model ('ProfileModel', profile);
+module.exports = mongoose.model ('Profile', profile);
