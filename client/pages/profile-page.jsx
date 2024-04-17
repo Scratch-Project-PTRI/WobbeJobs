@@ -11,7 +11,7 @@ function EditProfile() {
   return (
     <div>
       <div>
-        <img src={wobblegongImg} onClick={() => navigate("/home")} />
+        <img src={wobblegongImg} className='h-10 w-auto' onClick={() => navigate("/home")} />
       </div>
       <span className="login-container">
         <label>First Name:</label>
