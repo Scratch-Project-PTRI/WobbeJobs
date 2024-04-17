@@ -6,20 +6,22 @@ import Signup from './pages/signup-page.jsx';
 import Search from './pages/search-page.jsx';
 import EditProfile from './pages/profile-page.jsx';
 import './styles.css';
-
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 function App() {
   return (
     <div className="">
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Login />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/home" element={<Search />}></Route>
-          <Route path="/editprofile" element={<EditProfile />}></Route>
-        </Routes>
-      </BrowserRouter>
+        <GoogleOAuthProvider clientId='254528258088-dl9ikiuf975aelj7d07p8ashkbgl7kbs.apps.googleusercontent.com'>
+          <BrowserRouter>
+            <Routes>
+              <Route index element={<Login />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/signup" element={<Signup />}></Route>
+              <Route path="/home" element={<Search />}></Route>
+              <Route path="/editprofile" element={<EditProfile />}></Route>
+            </Routes>
+          </BrowserRouter>
+        </GoogleOAuthProvider>
     </div>
   );
 }

@@ -53,6 +53,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Development',
       template: '/client/index.html',
-    })
+    }),
   ]
 };
