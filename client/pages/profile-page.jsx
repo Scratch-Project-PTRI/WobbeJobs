@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 const wobblegongImg =
-"https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
+  "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
 
 function EditProfile() {
   const navigate = useNavigate();
@@ -12,7 +12,11 @@ function EditProfile() {
   return (
     <div>
       <div>
-        <img src={wobblegongImg} className='h-10 w-auto' onClick={() => navigate("/home")} />
+        <img
+          src={wobblegongImg}
+          className="h-10 w-auto"
+          onClick={() => navigate("/home")}
+        />
       </div>
       <span className="login-container">
         <label>First Name:</label>
