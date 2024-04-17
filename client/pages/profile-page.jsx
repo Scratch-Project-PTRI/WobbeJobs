@@ -9,10 +9,10 @@ function EditProfile() {
 
 
     return (
-        <div>
+        <div className='bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200'>
 
         <div> 
-            <img src='https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg' onClick={() => navigate('/home')}/>
+            <img src='https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg' className='h-10 w-auto' onClick={() => navigate('/home')}/>
         </div>
              <span className="login-container">
                 
