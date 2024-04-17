@@ -11,3 +11,5 @@ package.json
 npm-debug.log*
 
 build/
+
+api/old-test-apis
