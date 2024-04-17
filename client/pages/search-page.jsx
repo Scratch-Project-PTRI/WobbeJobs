@@ -3,7 +3,8 @@ import EditProfile from './profile-page.jsx';
 import { useNavigate } from 'react-router-dom';
 import Listing from '../components/Listing.jsx';
 const wobblegongImg =
-  "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
+  "https://t4.ftcdn.net/jpg/06/35/10/03/360_F_635100365_tnyF2t4XUmK4SPagf9tW8S3OHp6CVbyh.jpg";
+
 function Search() {
   const navigate = useNavigate();
   const [jobTitle, setJobTitle] = useState('');
@@ -68,6 +69,7 @@ function Search() {
       <img
         src={wobblegongImg}
         onClick={() => navigate('/home')}
+        className="w-64 h-auto"
       />
       <button onClick={handleEditingProfile}> Edit Profile</button>
       <div className="mb-4">
