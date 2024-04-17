@@ -5,26 +5,29 @@ const authController = {};
 /**
  * createUser - create and save a nAuth into the database.
  */
-authController.createUser = (req, res, next) => {
-  const { email, password } = req.body;
-  if (email && password) {
-    console.log('Email and password provided');
-    Auth.create({
-      email,
-      password,
-    }).then((data) => {
-      console.log(data);
-      res.locals.user = data;
-      return next();
-    }).catch(err => {
+authController.createUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    if (email === '' || password === '') {
+      throw {msg :'need to enter both email & password to create new user' }
+    }
+      console.log('Email and password provided');
+      const user = await Auth.create({
+        email,
+        password,
+      }) 
+    if (!user) {
+      throw {msg : 'error creating user'}
+    }
+    res.locals.user = user
+    return next()
+    }
+    catch (error) {
       return next({
         log: 'Express error handler caught error in authController.createUser',
         status: 500,
-        message: { err },
-      });
+        message: error.msg,
     });
-  } else {
-    return next({ error: 'Email or password was not provided' });
   }
 };
 

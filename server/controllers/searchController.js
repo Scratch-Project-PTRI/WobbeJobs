@@ -6,6 +6,7 @@ searchController.searchZipRecruiter = async (req, res, next) => {
   res.locals.now = 'test';
   console.log(
     'Inside CONTROLLER --->',
+    req.body,
     req.body.jobLocation,
     req.body.jobTitle
   );
@@ -18,7 +19,7 @@ searchController.searchZipRecruiter = async (req, res, next) => {
 
     const page = await browser.newPage();
     await page.goto(
-      `https://www.ziprecruiter.com/jobs-search?search=${req.body.jobTitle}&location=${req.body.jobLocation}%2C+FL&radius=${req.body.jobRadius}`
+      `https://www.ziprecruiter.com/jobs-search?search=${req.body.jobTitle}&location=${req.body.jobLocation}&radius=${req.body.jobRadius}`
     );
 
     const data = await page.evaluate(() => {

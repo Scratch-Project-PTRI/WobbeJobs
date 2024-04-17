@@ -1,13 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Signup() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSignup = (e) => {
     e.preventDefault();
-    // logic to create account and if successful, navigate to search page. If not, back to login page.
-    navigate('/home');
+
+    console.log('in handle')
+    fetch('/signup', {
+      method : 'POST',
+      headers : {
+        'Content-Type' : 'application/json',
+      }, 
+      body : JSON.stringify({
+        email,
+        password
+      })
+    })
+    .then(response => {
+      if (response.ok){
+        navigate('/home');
+        // console.log(response);
+      }
+    });
+
+    
   };
 
   const handleHaveAccount = (e) => {
@@ -18,7 +38,7 @@ function Signup() {
     <div className="min-h-screen flex justify-center  items-center bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
     <div className="max-w-md w-full bg-white rounded-xl shadow-2xl p-8">
       <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
-        Looking for a new account? You've come to the right place!
+        Need a new account? You've come to the right place!
       </h2>
       <div className="mb-4">
         <label className="block text-gray-700 ">Username:</label>
@@ -26,6 +46,8 @@ function Signup() {
           type="email"
           id="email"
           name="username"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
           className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
           placeholder="Enter your email..."
         />
@@ -36,6 +58,8 @@ function Signup() {
           type="password"
           id="password"
           name="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
           className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           placeholder="Enter your password"
         />
@@ -58,24 +82,7 @@ function Signup() {
       </footer>
     </div>
   </div>
-    
-    // <div className="">
-    //   <h1 className="text-center">THIS IS A TEST</h1>
-    //   <span className="login-container">
-    //     <label>Username:</label>
-    //     <input type="email" id="email" name="username" />
-    //     <br />
 
-    //     <label className="password-login">Password:</label>
-    //     <input type="password" id="password" name="password" />
-    //     <button onClick={handleSignup}>Signup</button>
-    //   </span>
-
-    //   <footer id="login-footer">
-    //     Already have an account?{' '}
-    //     <input type="checkbox" onClick={handleHaveAccount} />
-    //   </footer>
-    // </div>
   );
 }
 

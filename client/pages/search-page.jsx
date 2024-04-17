@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import EditProfile from './profile-page.jsx';
 import { useNavigate } from 'react-router-dom';
+import Listing from '../components/Listing.jsx';
 
 function Search() {
   const navigate = useNavigate();
@@ -12,6 +13,9 @@ function Search() {
     e.preventDefault();
     navigate('/editprofile');
   };
+
+  const [listings, setListings] = useState([]);
+  const [searched, setSearched] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -34,6 +38,23 @@ function Search() {
         });
         const data = await response.json();
         console.log('RESPONSE from Scrape ---->', data);
+        // const data = [{jobTitle: 'Title1', priceTitle: 'Salary1', quickApplyLink: 'Link1'},
+        // {jobTitle: 'Title2', priceTitle: 'Salary2', quickApplyLink: 'Link2'},
+        // {jobTitle: 'Title3', priceTitle: 'Salary3', quickApplyLink: 'Link3'},
+        // {jobTitle: 'Title4', priceTitle: 'Salary4', quickApplyLink: 'Link4'}];
+        // console.log(data);
+        const temp = [];
+        data.forEach((el) => {
+          temp.push(
+            <Listing
+              title={el.jobTitle}
+              salary={el.priceTitle}
+              apply={el.quickApplyLink}
+            />
+          );
+        });
+        setListings(temp);
+        setSearched(true);
       } catch (error) {
         console.log('Error scraping from Front End Fetch:', error);
       }
@@ -95,6 +116,7 @@ function Search() {
       >
         Search
       </button>
+      <div>{searched ? <div>{listings}</div> : null}</div>
     </div>
   );
 }
