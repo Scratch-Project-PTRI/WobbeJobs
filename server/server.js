@@ -55,7 +55,7 @@ app.post('/signup', authController.createUser, (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-  console.log('inside HOME route');
+ // console.log('inside HOME route');
   return res.status(200).sendFile(path.join(__dirname, '/search-page'));
 });
 
@@ -98,5 +98,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Look at this --> Server is running @ ${PORT}`);
+  //console.log(`Look at this --> Server is running @ ${PORT}`);
 });
