@@ -3,7 +3,7 @@ import EditProfile from "./profile-page.jsx";
 import { useNavigate } from "react-router-dom";
 import Listing from "../components/Listing.jsx";
 const wobblegongImg =
-  "https://t4.ftcdn.net/jpg/06/35/10/03/360_F_635100365_tnyF2t4XUmK4SPagf9tW8S3OHp6CVbyh.jpg";
+  "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
 
 function Search() {
   const navigate = useNavigate();
@@ -72,13 +72,6 @@ function Search() {
         className="h-10 w-auto"
         onClick={() => navigate("/home")}
       />
-      <div>
-        <button className="border" onClick={() => navigate("/editprofile")}>
-          {" "}
-          Go to profile page
-        </button>
-      </div>
-      <h2>SEARCH / HOME PAGE</h2>
       <button className="border" onClick={handleEditingProfile}>
         {" "}
         Edit Profile
