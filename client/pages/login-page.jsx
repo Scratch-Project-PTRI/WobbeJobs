@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
 
-
 function Login() {
   const navigate = useNavigate();
 
@@ -102,7 +101,7 @@ function Login() {
   return (
     <div className="min-h-screen flex justify-center  items-center bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
       <div className="max-w-md w-full bg-white rounded-xl shadow-2xl p-8">
-        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
+        <h2 className="text-3xl font-semibold text-center text-gray-700 mb-8">
           Welcome Back!
         </h2>
         <div className="mb-4">

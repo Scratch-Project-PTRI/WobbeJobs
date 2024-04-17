@@ -220,7 +220,7 @@ const puppeteer = require('puppeteer');
     return results;
   });
 
-  console.log(data);
+  console.log('Resuts DATA --->', data);
 
   await browser.close();
 })();

@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 const authController = require('./controllers/authController');
+const searchController = require('./controllers/searchController');
 
 const mongoose = require('mongoose');
 
@@ -56,9 +57,9 @@ app.get('/home', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '/search-page'));
 });
 
-app.get('/search', (req, res) => {
-  console.log('inside SEARCH route');
-  return res.status(200).sendFile(path.join(__dirname, '/search-page'));
+app.post('/search', searchController.searchZipRecruiter, (req, res) => {
+  console.log('inside SEARCH route--->', res.locals.zipResults[0]);
+  return res.status(200).send(res.locals.zipResults);
 });
 
 app.get('/editprofile', (req, res) => {
