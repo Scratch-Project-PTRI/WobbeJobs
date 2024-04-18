@@ -5,7 +5,7 @@ import Listing from "../components/Listing.jsx";
 const wobblegongImg =
   "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
 
-function Search() {
+function Search(props) {
   const navigate = useNavigate();
   const [jobTitle, setJobTitle] = useState("");
   const [jobLocation, setLocation] = useState("");
@@ -123,6 +123,9 @@ function Search() {
           >
           Search
         </button> */}
+        <div className='flex justify-center'>
+          <h1 className='text-lg font-semibold mb-4'>Welcome {props.currentEmail}</h1>
+        </div>
 
       <div className="mb-4 flex justify-center">
         <input

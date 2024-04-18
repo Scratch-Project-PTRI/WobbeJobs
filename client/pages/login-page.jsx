@@ -2,12 +2,36 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
 
-function Login() {
+function Login(props) {
   const navigate = useNavigate();
+
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+
+  const auth = async () => {
+    try {
+      const response = await fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+      if(response.status === 200) {
+        props.setCurrentEmail(email);
+        navigate('/home');
+      } else {
+        alert('Incorrect Credentials')
+      }
+    } catch (error) {
+      console.log("Error scraping from Authentication:", error);
+    }
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate('/home');
+    auth();
   };
 
   const handleNewAccount = (e) => {
@@ -131,7 +155,9 @@ function Login() {
           <input
             type="email"
             id="email"
-            name="username"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
             placeholder="Enter your email..."
           />
@@ -142,6 +168,8 @@ function Login() {
             type="password"
             id="password"
             name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Enter your password"
           />

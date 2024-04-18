@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Signup() {
+function Signup(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -21,7 +21,8 @@ function Signup() {
       })
     })
     .then(response => {
-      if (response.ok){
+      if (response.ok) {
+        props.setCurrentEmail(email);
         navigate('/home');
         // console.log(response);
       }
