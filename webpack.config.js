@@ -38,10 +38,9 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            // options: {
-            //   name: 'deep_sea.mp4',
-            //   name2: 'office_walkers.mp4'
-            // }  
+            options: {
+              name: '[name].[ext]'
+            }  
           }
         ]
       },    

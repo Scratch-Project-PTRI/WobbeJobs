@@ -6,7 +6,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 // import video from "../assets/office_walkers.mp4";
-import logo from '../assets/wobbe_mascot.png';
+import logo from '../assets/wobbe_mascot2.png';
 
 
 function LandingPage (){
@@ -25,7 +25,6 @@ function LandingPage (){
             autoPlay
             loop
             muted
-            controls
             className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
         >
             <source
@@ -35,7 +34,7 @@ function LandingPage (){
                 // src={video}
                 // type="video/mp4"
 
-                src='../assets/deep_sea.mp4' 
+                src='../assets/deep_sea2.mp4' 
                 type="video/mp4"
             />
     Your browser does not support the video tag.
