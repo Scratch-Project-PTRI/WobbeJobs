@@ -5,12 +5,15 @@ import Listing from "../components/Listing.jsx";
 import { Watch } from 'react-loader-spinner';
 const wobblegongImg =
   "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
+  import zipRecruiterLogo from '../assets/images/zip.png';
+import indeedLogo from '../assets/images/indeed.png';
 
 function Search(props) {
   const navigate = useNavigate();
   const [jobTitle, setJobTitle] = useState("");
   const [jobLocation, setLocation] = useState("");
   const [jobRadius, setRadius] = useState("");
+ // const [savedSearch, setSavedSearch] = useState("");
 
   const handleEditingProfile = (e) => {
     e.preventDefault();
@@ -19,11 +22,11 @@ function Search(props) {
 
   const [listings, setListings] = useState([]);
   const [searched, setSearched] = useState(false);
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setLoading(true);
+    //setLoading(true);
     console.log("Scrape Data");
     const fetchData = async () => {
       try {
@@ -42,18 +45,17 @@ function Search(props) {
         });
         const data = await response.json();
         console.log("RESPONSE from Scrape ---->", data);
-        // const data = [{jobTitle: 'Title1', priceTitle: 'Salary1', quickApplyLink: 'Link1'},
-        // {jobTitle: 'Title2', priceTitle: 'Salary2', quickApplyLink: 'Link2'},
-        // {jobTitle: 'Title3', priceTitle: 'Salary3', quickApplyLink: 'Link3'},
-        // {jobTitle: 'Title4', priceTitle: 'Salary4', quickApplyLink: 'Link4'}];
-        // console.log(data);
+       
         const temp = [];
         for (let i = 0; i < data.length; i++) {
           temp.push(
             <Listing
               title={data[i].jobTitle}
+              company={data[i].companyName}
               salary={data[i].priceTitle}
               apply={data[i].quickApplyLink}
+              source={data[i].src === 'Indeed' ? indeedLogo : zipRecruiterLogo}
+              // source={data[i].src}
               key={i}
             />
           );
@@ -75,8 +77,8 @@ function Search(props) {
         className="h-10 w-auto"
         onClick={() => navigate("/home")}
       />
-      <button className="border" onClick={handleEditingProfile}>
-        {" "}
+      <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-50 hover:text-blue-500" onClick={handleEditingProfile}>
+        
         Edit Profile
       </button>
 

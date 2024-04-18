@@ -12,7 +12,7 @@ indeedController.searchIndeed = async (req, res, next) => {
   );
 
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     defaultViewport: false,
   });
 
@@ -34,7 +34,7 @@ indeedController.searchIndeed = async (req, res, next) => {
       );
       const priceTitle = priceTitleElement
         ? priceTitleElement.textContent.trim()
-        : 'Salary not found';
+        : 'N/A';
       // https://www.indeed.com/rc
       const quickApplyLinkElement = jobElement.querySelector(
         'a.jcs-JobTitle.css-jspxzf.eu4oa1w0'
@@ -51,12 +51,14 @@ indeedController.searchIndeed = async (req, res, next) => {
         ? companyNameElement.textContent.trim()
         : 'Company not found';
 
+      const src = 'Indeed';
+
       results.push({
         jobTitle,
         priceTitle,
         quickApplyLink,
         companyName,
-        src: 'indeed',
+        src,
       });
     });
 
