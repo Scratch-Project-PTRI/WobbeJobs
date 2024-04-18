@@ -98,5 +98,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  //console.log(`Look at this --> Server is running @ ${PORT}`);
+  console.log(`Look at this --> Server is running @ ${PORT}`);
 });
