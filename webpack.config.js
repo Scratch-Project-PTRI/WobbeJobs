@@ -32,7 +32,19 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         use: ['file-loader']
-      }
+      },
+      {
+        test: /\.(mov|mp4)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            // options: {
+            //   name: 'deep_sea.mp4',
+            //   name2: 'office_walkers.mp4'
+            // }  
+          }
+        ]
+      },    
     ],
   }, 
   devServer: {
@@ -56,3 +68,4 @@ module.exports = {
     }),
   ]
 };
+
