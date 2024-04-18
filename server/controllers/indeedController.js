@@ -44,7 +44,20 @@ indeedController.searchIndeed = async (req, res, next) => {
         ? quickApplyLinkElement.href
         : 'quick apply condition';
 
-      results.push({ jobTitle, priceTitle, quickApplyLink });
+      const companyNameElement = jobElement.querySelector(
+        '.css-92r8pb.eu4oa1w0'
+      );
+      const companyName = companyNameElement
+        ? companyNameElement.textContent.trim()
+        : 'Company not found';
+
+      results.push({
+        jobTitle,
+        priceTitle,
+        quickApplyLink,
+        companyName,
+        src: 'indeed',
+      });
     });
 
     return results;

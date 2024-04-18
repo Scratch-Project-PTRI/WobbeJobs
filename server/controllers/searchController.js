@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer-extra');
-const StealthPlugin = require('puppeteer-extra-plugin-stealth')
-puppeteer.use(StealthPlugin())
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 
 const searchController = {};
 
@@ -21,10 +21,10 @@ searchController.searchZipRecruiter = async (req, res, next) => {
 
     const page = await browser.newPage();
     await page.goto(
-      `https://www.ziprecruiter.com/jobs-search?search=${req.body.jobTitle}&location=${req.body.jobLocation}&radius=${req.body.jobRadius}`,
+      `https://www.ziprecruiter.com/jobs-search?search=${req.body.jobTitle}&location=${req.body.jobLocation}&radius=${req.body.jobRadius}`
     );
 
-    await page.screenshot({path: 'ziprecruiter-screenshot.png'});
+    await page.screenshot({ path: 'ziprecruiter-screenshot.png' });
 
     const data = await page.evaluate(() => {
       console.log('DATATA');
@@ -56,7 +56,20 @@ searchController.searchZipRecruiter = async (req, res, next) => {
           ? quickApplyLinkElement.href
           : null;
 
-        results.push({ jobTitle, priceTitle, quickApplyLink });
+        const companyNameElement = parentElement.querySelector(
+          '[data-testid=“job-card-company”]'
+        );
+        const companyName = companyNameElement
+          ? companyNameElement.textContent.trim()
+          : 'company name';
+
+        results.push({
+          jobTitle,
+          priceTitle,
+          quickApplyLink,
+          companyName,
+          src: 'ZipRecruiter',
+        });
       });
 
       return results;
