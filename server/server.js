@@ -14,7 +14,7 @@ mongoose.connect(
 );
 
 mongoose.connection.once('open', () => {
-  // console.log('MONGO DB ---> Connected');
+  console.log('MONGO DB ---> Connected');
 });
 
 // mongoose.connection.on('open', () => {
