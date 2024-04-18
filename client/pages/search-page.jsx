@@ -22,11 +22,11 @@ function Search(props) {
 
   const [listings, setListings] = useState([]);
   const [searched, setSearched] = useState(false);
-  //const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    //setLoading(true);
+    setLoading(true);
     console.log("Scrape Data");
     const fetchData = async () => {
       try {
@@ -54,8 +54,8 @@ function Search(props) {
               company={data[i].companyName}
               salary={data[i].priceTitle}
               apply={data[i].quickApplyLink}
-              source={data[i].src === 'Indeed' ? indeedLogo : zipRecruiterLogo}
-              // source={data[i].src}
+              // source={data[i].src === 'Indeed' ? indeedLogo : zipRecruiterLogo}
+              source={data[i].src}
               key={i}
             />
           );
