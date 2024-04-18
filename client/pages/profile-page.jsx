@@ -10,8 +10,9 @@ function EditProfile() {
   }
 
   return (
-    <div>
-      <div>
+    <div className="search-page min-h-screen bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
+
+  <div>
         <img
           src={wobblegongImg}
           className="h-10 w-auto"
@@ -19,20 +20,12 @@ function EditProfile() {
         />
       </div>
       <span className="login-container">
-        <label>First Name:</label>
-        <input type="text" id="firstName" name="firstName" />
-        <br />
-
-        <label>Last Name:</label>
-        <input type="text" id="lastName" name="lastName" />
-        <br />
-
         <label>Username:</label>
-        <input type="email" id="email" name="username" />
+        <input type="email" id="email" name="username" value="*****"/>
         <br />
 
         <label className="password-login">Password:</label>
-        <input type="password" id="password" name="password" />
+        <input type="password" id="password" name="password" value="*****"/>
         <button onClick={updateProfile}>Update Profile</button>
       </span>
     </div>
