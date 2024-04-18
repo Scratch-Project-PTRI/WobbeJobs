@@ -4,6 +4,8 @@ const path = require('path');
 const PORT = 3000;
 const authController = require('./controllers/authController');
 const searchController = require('./controllers/searchController');
+const indeedController = require('./controllers/indeedController');
+const shuffleController = require('./controllers/shuffleController');
 
 const mongoose = require('mongoose');
 
@@ -47,9 +49,9 @@ app.get('/signup', (req, res) => {
 
 app.post('/signup', authController.createUser, (req, res) => {
   // console.log("res" + res)
-  
+
   // return res.status(200).sendFile(path.join(__dirname, '/search-page'));
-  return res.status(200).json('')
+  return res.status(200).json('');
 });
 
 // app.get('/home', (req, res) => {
@@ -57,10 +59,21 @@ app.post('/signup', authController.createUser, (req, res) => {
   // return res.status(200).sendFile(path.join(__dirname, '../client/app.js'));
 // });
 
-app.post('/search', searchController.searchZipRecruiter, (req, res) => {
-  console.log('inside SEARCH route--->', res.locals.zipResults[0]);
-  return res.status(200).send(res.locals.zipResults);
-});
+app.post(
+  '/search',
+  searchController.searchZipRecruiter,
+  indeedController.searchIndeed,
+  shuffleController.shuffleResults,
+  (req, res) => {
+    console.log(
+      'inside ANON SEARCH route--->',
+      res.locals.zipResults[0],
+      res.locals.indeedResults[0]
+    );
+
+    return res.status(200).send(res.locals.finalResults);
+  }
+);
 
 app.get('/editprofile', (req, res) => {
   console.log('inside EDIT PROFILE route');

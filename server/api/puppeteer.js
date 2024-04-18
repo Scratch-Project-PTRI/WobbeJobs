@@ -128,3 +128,56 @@
 //   await browser.close();
 // })();
 //
+
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: false,
+  });
+
+  const page = await browser.newPage();
+  await page.goto(
+    'https://www.indeed.com/jobs?q=carpenter&l=clearwater&radius=25&vjk=b4dfebcc5d30f707'
+  );
+
+  const data = await page.evaluate(() => {
+    const parentElements = document.querySelectorAll(
+      '.group.flex.w-full.flex-col.text-black'
+    ); // Assuming each job listing is encapsulated within a parent element with class 'group.flex.w-full.flex-col.text-black'
+    // const results = [];
+
+    // parentElements.forEach((parentElement) => {
+    //   const jobTitleElement = parentElement.querySelector(
+    //     'h2.font-bold.text-black.text-header-sm a'
+    //   );
+    //   const jobTitle = jobTitleElement
+    //     ? jobTitleElement.textContent.trim()
+    //     : 'Job title not found';
+
+    //   const priceTitleElement = parentElement.querySelector(
+    //     'div.flex.items-center div.mr-8 p'
+    //   );
+    //   const priceTitle = priceTitleElement
+    //     ? priceTitleElement.textContent.trim()
+    //     : 'Salary not found';
+
+    //   // Selecting anchor elements directly by their href attribute
+    //   const quickApplyLinkElement = parentElement.querySelector(
+    //     'a[href^="https://www.ziprecruiter.com/"]'
+    //   );
+    //   const quickApplyLink = quickApplyLinkElement
+    //     ? quickApplyLinkElement.href
+    //     : null;
+
+    //   results.push({ jobTitle, priceTitle, quickApplyLink });
+    // });
+
+    // return results;
+  });
+
+  console.log('Resuts DATA --->', data);
+
+  await browser.close();
+})();

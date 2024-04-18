@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import EditProfile from './profile-page.jsx';
 import { useNavigate } from 'react-router-dom';
 import Listing from '../components/Listing.jsx';
-
+const wobblegongImg =
+  "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
 function Search() {
   const navigate = useNavigate();
   const [jobTitle, setJobTitle] = useState('');
@@ -66,7 +67,7 @@ function Search() {
   return (
     <div className="search-page min-h-screen bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
       <img
-        src="https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg"
+        src={wobblegongImg}
         className='h-10 w-auto'
         onClick={() => navigate('/home')}
       />
@@ -81,6 +82,10 @@ function Search() {
 
       
       {/* 
+        src={wobblegongImg}
+        onClick={() => navigate('/home')}
+      />
+      <button onClick={handleEditingProfile}> Edit Profile</button>
       <div className="mb-4">
       <label className="block text-gray-700 ">Job Title:</label>
       <input

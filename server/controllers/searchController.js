@@ -7,7 +7,7 @@ const searchController = {};
 searchController.searchZipRecruiter = async (req, res, next) => {
   res.locals.now = 'test';
   console.log(
-    'Inside CONTROLLER --->',
+    'Inside searchCONTROLLER --->',
     req.body,
     req.body.jobLocation,
     req.body.jobTitle
