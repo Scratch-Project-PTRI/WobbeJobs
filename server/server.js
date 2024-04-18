@@ -14,7 +14,7 @@ mongoose.connect(
 );
 
 mongoose.connection.once('open', () => {
-  // console.log('MONGO DB ---> Connected');
+  console.log('MONGO DB ---> Connected');
 });
 
 // mongoose.connection.on('open', () => {
@@ -98,5 +98,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  //console.log(`Look at this --> Server is running @ ${PORT}`);
+  console.log(`Look at this --> Server is running @ ${PORT}`);
 });
