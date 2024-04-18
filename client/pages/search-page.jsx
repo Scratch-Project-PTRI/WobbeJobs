@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Listing from "../components/Listing.jsx";
 const wobblegongImg =
   "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
-import zipRecruiterLogo from '../images/zip_logo.png';
-import indeedLogo from '../images/indeed_logo.png';
+  import zipRecruiterLogo from '../assets/images/zip.png';
+import indeedLogo from '../assets/images/indeed.png';
 
 function Search(props) {
   const navigate = useNavigate();
@@ -50,9 +50,11 @@ function Search(props) {
           temp.push(
             <Listing
               title={data[i].jobTitle}
-              company={data[i].jobTitle}
+              company={data[i].companyName}
               salary={data[i].priceTitle}
               apply={data[i].quickApplyLink}
+              source={data[i].src === 'Indeed' ? indeedLogo : zipRecruiterLogo}
+              // source={data[i].src}
               key={i}
             />
           );
@@ -74,7 +76,7 @@ function Search(props) {
         onClick={() => navigate("/home")}
       />
       <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-50 hover:text-blue-500" onClick={handleEditingProfile}>
-        {" "}
+        
         Edit Profile
       </button>
 
