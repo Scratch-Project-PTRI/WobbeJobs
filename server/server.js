@@ -24,15 +24,15 @@ mongoose.connection.once('open', () => {
 app.use(express.json());
 app.use(express.static(path.join(__dirname, './../client')));
 
-app.get('/', (req, res) => {
-  // console.log('inside GET route');
-  return res.status(200).json('GET inside the root endpoint ');
-});
+// app.get('/', (req, res) => {
+//   // console.log('inside GET route');
+//   return res.status(200).json('GET inside the root endpoint ');
+// });
 
-app.get('/login', (req, res) => {
-  // console.log('inside LOGIN route');
-  return res.status(200).json('Response from login');
-});
+// app.get('/login', (req, res) => {
+//   // console.log('inside LOGIN route');
+//   return res.status(200).json('Response from login');
+// });
 
 app.post('/login', authController.verifyUser, (req, res) => {
   if (res.locals.incorrect) {
@@ -42,10 +42,10 @@ app.post('/login', authController.verifyUser, (req, res) => {
   }
 });
 
-app.get('/signup', (req, res) => {
-  // console.log('inside SIGNUP route');
-  return res.status(200).json('Response from signup');
-});
+// app.get('/signup', (req, res) => {
+//   // console.log('inside SIGNUP route');
+//   return res.status(200).json('Response from signup');
+// });
 
 app.post('/signup', authController.createUser, (req, res) => {
   // console.log("res" + res)
@@ -75,10 +75,10 @@ app.post(
   }
 );
 
-app.get('/editprofile', (req, res) => {
-  console.log('inside EDIT PROFILE route');
-  return res.status(200).sendFile(path.join(__dirname, '/profile-page'));
-});
+// app.get('/editprofile', (req, res) => {
+//   console.log('inside EDIT PROFILE route');
+//   return res.status(200).sendFile(path.join(__dirname, '/profile-page'));
+// });
 
 app.use((req, res) => {
   return res.status(200).sendFile(path.join(__dirname, "../build/index.html"), (err) => {
