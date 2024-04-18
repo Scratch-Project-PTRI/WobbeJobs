@@ -38,7 +38,7 @@ app.post('/login', authController.verifyUser, (req, res) => {
   if (res.locals.incorrect) {
     return res.status(401).json('Incorrect credentials');
   } else {
-    return res.status(200).json(res.locals.user);
+    return res.status(200).json('Success');
   }
 });
 
@@ -75,10 +75,15 @@ app.post(
   }
 );
 
-// app.get('/editprofile', (req, res) => {
-//   console.log('inside EDIT PROFILE route');
-//   return res.status(200).sendFile(path.join(__dirname, '/profile-page'));
-// });
+app.post('/editemail', authController.updateEmail, (req, res) => {
+  console.log('inside EDIT Email route');
+  return res.status(200).json(res.locals.data);
+});
+
+app.post('/editpassword', authController.updatePassword, (req, res) => {
+  console.log('inside EDIT Password route');
+  return res.status(200).json(res.locals.data);
+});
 
 app.use((req, res) => {
   return res.status(200).sendFile(path.join(__dirname, "../build/index.html"), (err) => {

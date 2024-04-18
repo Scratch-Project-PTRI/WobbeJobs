@@ -2,12 +2,36 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
 
-function Login() {
+function Login(props) {
   const navigate = useNavigate();
+
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+
+  const auth = async () => {
+    try {
+      const response = await fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+      if(response.status === 200) {
+        props.setCurrentEmail(email);
+        navigate('/home');
+      } else {
+        alert('Incorrect Credentials')
+      }
+    } catch (error) {
+      console.log("Error scraping from Authentication:", error);
+    }
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate('/home');
+    auth();
   };
 
   const handleNewAccount = (e) => {
@@ -104,17 +128,36 @@ function Login() {
   return (
  
     <div className="min-h-screen flex justify-center  items-center bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
-      {/* video here */}
-      <div className="max-w-md w-full bg-white rounded-xl shadow-2xl p-8">
+          <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden" />
+      
+        <video
+            autoPlay
+            loop
+            muted
+            className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
+        >
+            <source
+                // src='https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4'
+                // type="video/mp4"
+
+                src='../assets/office_walkers.mp4' 
+                type="video/mp4"
+            />
+        Your browser does not support the video tag.
+        </video>
+        
+      <div className="max-w-md w-full z-10 bg-white rounded-xl shadow-2xl p-8">
         <h2 className="text-3xl font-semibold text-center text-gray-700 mb-8">
-          Welcome Back!
+          Ready to hunt?
         </h2>
         <div className="mb-4">
           <label className="block text-gray-700 ">Username:</label>
           <input
             type="email"
             id="email"
-            name="username"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
             placeholder="Enter your email..."
           />
@@ -125,6 +168,8 @@ function Login() {
             type="password"
             id="password"
             name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Enter your password"
           />
@@ -166,7 +211,7 @@ function Login() {
         {/* <div className='mt-5 flex w-full items-center justify-center'>
           <GoogleLogin/>
         </div> */}
-{/*         
+        {/*         
         <div className='flex bg-blue-100 border justify-center'>
           <button className='' onClick={signOut}>Sign Out</button>
         </div> */}
@@ -185,7 +230,7 @@ function Login() {
         </footer>
       </div>
     </div>
-  );
-}
+  )
+};
 
 export default Login;
