@@ -1,11 +1,13 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+puppeteer.use(StealthPlugin())
 
 const searchController = {};
 
 searchController.searchZipRecruiter = async (req, res, next) => {
   res.locals.now = 'test';
   console.log(
-    'Inside CONTROLLER --->',
+    'Inside searchCONTROLLER --->',
     req.body,
     req.body.jobLocation,
     req.body.jobTitle
@@ -13,14 +15,16 @@ searchController.searchZipRecruiter = async (req, res, next) => {
 
   try {
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       defaultViewport: false,
     });
 
     const page = await browser.newPage();
     await page.goto(
-      `https://www.ziprecruiter.com/jobs-search?search=${req.body.jobTitle}&location=${req.body.jobLocation}&radius=${req.body.jobRadius}`
+      `https://www.ziprecruiter.com/jobs-search?search=${req.body.jobTitle}&location=${req.body.jobLocation}&radius=${req.body.jobRadius}`,
     );
+
+    await page.screenshot({path: 'ziprecruiter-screenshot.png'});
 
     const data = await page.evaluate(() => {
       console.log('DATATA');
