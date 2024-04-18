@@ -82,12 +82,12 @@ function EditProfile(props) {
       </div>
       <span className="login-container">
         <label>Username:</label>
-        <input type="email" id="email" name="username" placeholder="Enter new Email"/>
+        <input type="email" id="email" name="username" placeholder="Enter new Email" className='pl-2'/>
         <button onClick={handleUpdateEmail}>Update Email</button>
         <br />
 
         <label className="password-login">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter new Password"/>
+        <input type="password" id="password" name="password" placeholder="Enter new Password" className='pl-2'/>
         <button onClick={handleUpdatePassword}>Update Password</button>
       </span>
     </div>
