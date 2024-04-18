@@ -9,6 +9,10 @@ function EditProfile(props) {
   let newEmail;
   let newPassword;
 
+  const updateProfile = async () => {
+    
+  }
+
   const updateEmail = async () => {
     try {
       const response = await fetch("/editemail", {
