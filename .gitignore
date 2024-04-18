@@ -13,3 +13,6 @@ npm-debug.log*
 build/
 
 api/old-test-apis
+
+screenshot.png
+ziprecruiter-screenshot.png
