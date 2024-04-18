@@ -52,10 +52,10 @@ app.post('/signup', authController.createUser, (req, res) => {
   return res.status(200).json('')
 });
 
-app.get('/home', (req, res) => {
-  console.log('inside HOME route');
-  return res.status(200).sendFile(path.join(__dirname, '/search-page'));
-});
+// app.get('/home', (req, res) => {
+//   console.log('inside HOME route');
+  // return res.status(200).sendFile(path.join(__dirname, '../client/app.js'));
+// });
 
 app.post('/search', searchController.searchZipRecruiter, (req, res) => {
   console.log('inside SEARCH route--->', res.locals.zipResults[0]);
@@ -65,6 +65,15 @@ app.post('/search', searchController.searchZipRecruiter, (req, res) => {
 app.get('/editprofile', (req, res) => {
   console.log('inside EDIT PROFILE route');
   return res.status(200).sendFile(path.join(__dirname, '/profile-page'));
+});
+
+app.use((req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, "../build/index.html"), (err) => {
+      if (err) {
+          console.log(err);
+          return res.status(500).send("An error occurred");
+      }
+});
 });
 
 // 404 handler
