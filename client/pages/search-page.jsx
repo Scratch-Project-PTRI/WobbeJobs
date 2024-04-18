@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EditProfile from "./profile-page.jsx";
 import { useNavigate } from "react-router-dom";
 import Listing from "../components/Listing.jsx";
+import { Watch } from 'react-loader-spinner';
 const wobblegongImg =
   "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
 
@@ -18,10 +19,11 @@ function Search(props) {
 
   const [listings, setListings] = useState([]);
   const [searched, setSearched] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
- 
+    setLoading(true);
     console.log("Scrape Data");
     const fetchData = async () => {
       try {
@@ -29,7 +31,6 @@ function Search(props) {
           alert("Job title and Location are required");
           return;
         }
-        alert("Press Okay, and wait a second! JOBS LOADING")
         const response = await fetch("/search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -58,6 +59,7 @@ function Search(props) {
           );
         }
         setListings(temp);
+        setLoading(false);
         setSearched(true);
       } catch (error) {
         console.log("Error scraping from Front End Fetch:", error);
@@ -149,7 +151,7 @@ function Search(props) {
         <input
           type="text"
           name="radius"
-          className="mr-2 pl-2 w-[5%] border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          className="mr-2 pl-2 w-[6%] border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           placeholder="Radius..."
           value={jobRadius}
           onChange={(e) => setRadius(e.target.value)}
@@ -163,6 +165,20 @@ function Search(props) {
       </div>
 
       <div>
+        {loading ? (
+          <div className="mt-40 flex justify-center">
+            <Watch
+            visible={true}
+            height="80"
+            width="80"
+            radius="48"
+            color="#4fa94d"
+            ariaLabel="watch-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            />
+          </div>
+        ) : null}
         {searched ? (
           <div className="flex flex-col items-center">{listings}</div>
         ) : null}

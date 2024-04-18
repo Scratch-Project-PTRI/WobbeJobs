@@ -7,6 +7,7 @@ function Login(props) {
 
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ invalid, setInvalid] = useState(false);
 
   const auth = async () => {
     try {
@@ -22,7 +23,7 @@ function Login(props) {
         props.setCurrentEmail(email);
         navigate('/home');
       } else {
-        alert('Incorrect Credentials')
+        setInvalid(true);
       }
     } catch (error) {
       console.log("Error scraping from Authentication:", error);
@@ -150,29 +151,65 @@ function Login(props) {
         <h2 className="text-3xl font-semibold text-center text-gray-700 mb-8">
           Ready to hunt?
         </h2>
+        {invalid ? 
+        <div className='flex justify-center mb-4'>
+          <h3 className='px-2 py-1 bg-red-200 rounded-xl border border-red-500'>Invalid Credentials. Please try again</h3>
+        </div> : 
+        null}
         <div className="mb-4">
           <label className="block text-gray-700 ">Username:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
-            placeholder="Enter your email..."
-          />
-        </div>
+          {invalid ? 
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="pl-2 mt-1 block w-full border border-red-400 rounded-md shadow-sm"
+              placeholder="Enter your email..."
+            /> :
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="pl-2 mt-1 block w-full rounded-md shadow-sm"
+              placeholder="Enter your email..."
+            />}
+          </div>
+
         <div className="mb-6">
           <label className="block text-gray-700">Password:</label>
-          <input
+          {invalid ? 
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="pl-2 mt-1 block w-full border border-red-400 rounded-md shadow-sm"
+              placeholder="Enter your password"
+            /> : 
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="pl-2 mt-1 block w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Enter your password"
+            />}
+          {/* <input
             type="password"
             id="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="pl-2 mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Enter your password"
-          />
+          /> */}
+
         </div>
         <button
           onClick={handleLogin}
