@@ -26,8 +26,8 @@ indeedController.searchIndeed = async (req, res, next) => {
     const results = [];
 
     jobElements.forEach((jobElement) => {
-      const title = jobElement.querySelector('.jobTitle').textContent.trim();
-      console.log(title);
+      const jobTitle = jobElement.querySelector('.jobTitle').textContent.trim();
+      console.log(jobTitle);
 
       const priceTitleElement = jobElement.querySelector(
         '.css-1cvo3fd.eu4oa1w0'
@@ -44,7 +44,7 @@ indeedController.searchIndeed = async (req, res, next) => {
         ? quickApplyLinkElement.href
         : 'quick apply condition';
 
-      results.push({ title, priceTitle, quickApplyLink });
+      results.push({ jobTitle, priceTitle, quickApplyLink });
     });
 
     return results;
