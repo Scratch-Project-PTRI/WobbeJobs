@@ -21,14 +21,15 @@ function Search(props) {
 
   const handleSearch = (e) => {
     e.preventDefault();
+ 
     console.log("Scrape Data");
     const fetchData = async () => {
       try {
         if (!jobTitle || !jobLocation) {
-          console.log("Job title and Location are required");
+          alert("Job title and Location are required");
           return;
         }
-
+        alert("Press Okay, and wait a second! JOBS LOADING")
         const response = await fetch("/search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
