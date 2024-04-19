@@ -1,4 +1,4 @@
-// const puppeteer = require("puppeteer");
+//const puppeteer = require("puppeteer");
 
 // (async () => {
 //   const browser = await puppeteer.launch({
@@ -171,7 +171,7 @@
 //   await browser.close();
 // })();
 
-////------------>>> Winning code BELOW <<<-----------\\\\\\\\\\
+////-----------ZIP ->>> Winning code BELOW <<<-----------\\\\\\\\\\
 const puppeteer = require('puppeteer');
 
 (async () => {
@@ -182,7 +182,7 @@ const puppeteer = require('puppeteer');
 
   const page = await browser.newPage();
   await page.goto(
-    'https://www.ziprecruiter.com/jobs-search?search=carpenter&location=Clearwater%2C+FL&radius=25'
+    'https://www.ziprecruiter.com/jobs-search?search=software+engineer&location=remote'
   );
 
   const data = await page.evaluate(() => {
@@ -213,10 +213,15 @@ const puppeteer = require('puppeteer');
       const quickApplyLink = quickApplyLinkElement
         ? quickApplyLinkElement.href
         : null;
+        const companyNameElement = parentElement.querySelector('[data-testid="job-card-company"]');
+        const companyName = companyNameElement
+        ? companyNameElement.textContent.trim() 
+        : 'company name';
 
-      results.push({ jobTitle, priceTitle, quickApplyLink });
+      results.push({ jobTitle, priceTitle, quickApplyLink, companyName });
+      //console.log(results)
     });
-
+    
     return results;
   });
 
@@ -225,38 +230,38 @@ const puppeteer = require('puppeteer');
   await browser.close();
 })();
 
-// -----> Winning Code Below <----------\\
-(async () => {
-  const browser = await puppeteer.launch({
-    headless: false,
-    defaultViewport: false,
-  });
+// -----> INDEED Winning Code Below <----------\\
+// (async () => {
+//   const browser = await puppeteer.launch({
+//     headless: false,
+//     defaultViewport: false,
+//   });
 
-  const page = await browser.newPage();
-  await page.goto('https://www.indeed.com/jobs?q=software+engineer&l=remote');
+//   const page = await browser.newPage();
+//   await page.goto('https://www.indeed.com/jobs?q=software+engineer&l=remote');
 
-  const data = await page.evaluate(() => {
-    const jobElements = document.querySelectorAll('.job_seen_beacon');
-    const results = [];
+//   const data = await page.evaluate(() => {
+//     const jobElements = document.querySelectorAll('.job_seen_beacon');
+//     const results = [];
 
-    jobElements.forEach((jobElement) => {
-      const title = jobElement.querySelector('.jobTitle').textContent.trim();
-      console.log(title);
+//     jobElements.forEach((jobElement) => {
+//       const title = jobElement.querySelector('.jobTitle').textContent.trim();
+//       console.log(title);
 
-      const priceTitleElement = jobElement.querySelector(
-        '.css-1cvo3fd.eu4oa1w0'
-      );
-      const priceTitle = priceTitleElement
-        ? priceTitleElement.textContent.trim()
-        : 'Salary not found';
-      // https://www.indeed.com/rc
-      const quickApplyLinkElement = jobElement.querySelector(
-        'a.jcs-JobTitle.css-jspxzf.eu4oa1w0'
-      );
+//       const priceTitleElement = jobElement.querySelector(
+//         '.css-1cvo3fd.eu4oa1w0'
+//       );
+//       const priceTitle = priceTitleElement
+//         ? priceTitleElement.textContent.trim()
+//         : 'Salary not found';
+//       // https://www.indeed.com/rc
+//       const quickApplyLinkElement = jobElement.querySelector(
+//         'a.jcs-JobTitle.css-jspxzf.eu4oa1w0'
+//       );
 
-      const quickApplyLink = quickApplyLinkElement
-        ? quickApplyLinkElement.href
-        : 'quick apply condition';
+//       const quickApplyLink = quickApplyLinkElement
+//         ? quickApplyLinkElement.href
+//         : 'quick apply condition';
 
       const companyNameElement = jobElement.querySelector(
         '.css-92r8pb.eu4oa1w0'
@@ -266,12 +271,12 @@ const puppeteer = require('puppeteer');
         : 'Company not found';
 
       results.push({ title, priceTitle, quickApplyLink, companyName });
-    });
+    
 
-    return results;
-  });
+//     return results;
+//   });
 
-  console.log('Results DATA --->', data);
+//   console.log('Results DATA --->', data);
 
   await browser.close();
 })();

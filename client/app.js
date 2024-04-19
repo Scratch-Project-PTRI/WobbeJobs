@@ -10,16 +10,18 @@ import LandingPage from './pages/landing-page.jsx';
 import { GoogleOAuthProvider } from '@react-oauth/google'
 
 function App() {
+  const [ currentEmail, setCurrentEmail ] = useState('');
+
   return (
     <div className="">
         <GoogleOAuthProvider clientId='254528258088-dl9ikiuf975aelj7d07p8ashkbgl7kbs.apps.googleusercontent.com'>
           <BrowserRouter>
             <Routes>
               <Route index element={<LandingPage />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/signup" element={<Signup />}></Route>
-              <Route path="/home" element={<Search />}></Route>
-              <Route path="/editprofile" element={<EditProfile />}></Route>
+              <Route path="/login" element={<Login currentEmail={currentEmail} setCurrentEmail={setCurrentEmail}/>}></Route>
+              <Route path="/signup" element={<Signup currentEmail={currentEmail} setCurrentEmail={setCurrentEmail}/>}></Route>
+              <Route path="/home" element={<Search currentEmail={currentEmail} setCurrentEmail={setCurrentEmail}/>}></Route>
+              <Route path="/editprofile" element={<EditProfile currentEmail={currentEmail} setCurrentEmail={setCurrentEmail}/>}></Route>
             </Routes>
           </BrowserRouter>
         </GoogleOAuthProvider>

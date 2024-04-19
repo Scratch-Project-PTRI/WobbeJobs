@@ -1,4 +1,7 @@
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 
 const indeedController = {};
 
@@ -12,7 +15,7 @@ indeedController.searchIndeed = async (req, res, next) => {
   );
 
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     defaultViewport: false,
   });
 
@@ -20,6 +23,8 @@ indeedController.searchIndeed = async (req, res, next) => {
   await page.goto(
     `https://www.indeed.com/jobs?q=${req.body.jobTitle}&l=${req.body.jobLocation}&radius=${req.body.jobRadius}`
   );
+
+  await page.screenshot({ path: 'indeed-screenshot.png' });
 
   const data = await page.evaluate(() => {
     const jobElements = document.querySelectorAll('.job_seen_beacon');
@@ -32,6 +37,7 @@ indeedController.searchIndeed = async (req, res, next) => {
       const priceTitleElement = jobElement.querySelector(
         '.metadata.salary-snippet-container'
       );
+
       let priceTitle;
 
       if (priceTitleElement !== null) {
@@ -59,12 +65,14 @@ indeedController.searchIndeed = async (req, res, next) => {
         ? companyNameElement.textContent.trim()
         : 'Company not found';
 
+      const src = 'Indeed';
+
       results.push({
         jobTitle,
         priceTitle,
         quickApplyLink,
         companyName,
-        src: 'indeed',
+        src,
       });
     });
 
