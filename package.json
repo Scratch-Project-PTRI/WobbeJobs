@@ -11,13 +11,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "body-parser": "^1.20.2",
+    "mongoose": "^8.3.1",
     "node-fetch": "^3.3.2",
+    "puppeteer": "^22.6.5",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-loader-spinner": "^6.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.24.3",
@@ -26,8 +33,8 @@
     "autoprefixer": "^10.4.19",
     "babel-loader": "^9.1.3",
     "concurrently": "^8.2.2",
-    "css-loader": "^7.0.0",
     "cross-env": "^7.0.3",
+    "css-loader": "^7.0.0",
     "express": "^4.18.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.6.0",

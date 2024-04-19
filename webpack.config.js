@@ -32,7 +32,18 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         use: ['file-loader']
-      }
+      },
+      {
+        test: /\.(mov|mp4)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }  
+          }
+        ]
+      },    
     ],
   }, 
   devServer: {
@@ -53,6 +64,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Development',
       template: '/client/index.html',
-    })
+    }),
   ]
 };
+
