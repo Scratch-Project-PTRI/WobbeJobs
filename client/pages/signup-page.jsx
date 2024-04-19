@@ -24,11 +24,8 @@ function Signup(props) {
       if (response.ok) {
         props.setCurrentEmail(email);
         navigate('/home');
-        // console.log(response);
       }
     });
-
-    
   };
 
   const handleHaveAccount = (e) => {
@@ -108,6 +105,3 @@ function Signup(props) {
 
 export default Signup;
 
-// render failure message if signup unsuccesful ('accoutn already exists' or 'sign error, please refresh page and try again')
-
-// Change handleSignup function to navigate to search page instead of login page if signup successful
