@@ -67,7 +67,7 @@ function Login(props) {
     if (user) {
       fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
         method: 'GET',
-        mode: 'no-cors',
+        // mode: 'no-cors',
         headers: {
           Authorization: `Bearer ${user.access_token}`,
           Accept: 'application/json',
@@ -75,12 +75,14 @@ function Login(props) {
         //  "Access-Control-Allow-Origin": 'http://localhost:8080',
         }
       })
-          // .then(res => res.json())
+          .then(res => res.json())
           .then((res) => {
             console.log(res);
-            setProfile(res.data);
-            console.log(profile.email);
-            console.log(profile.name);
+            setProfile(res);
+            googleEmail(res.email);
+            console.log(res.email);
+            console.log(res.name);
+            // navigate('/home');
           })
           .catch((err) => console.log(err));
     };
@@ -88,12 +90,29 @@ function Login(props) {
     console.log(profile);
   }, [user])
 
+  function googleEmail(email) {
+    console.log('google email: ', email);
+    if(email) {
+      props.setCurrentEmail(email);
+      navigate('/home');
+    }
+  }
+
+  function handlePasswordVisibility() {
+    if(document.getElementById('password').getAttribute('type') === 'password') {
+      document.getElementById('password').setAttribute('type', 'text');
+      document.getElementById('passwordImage').setAttribute('src', 'https://media.geeksforgeeks.org/wp-content/uploads/20210917150049/eyeslash.png')
+    } else {
+      document.getElementById('password').setAttribute('type', 'password');
+      document.getElementById('passwordImage').setAttribute('src', 'https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png')
+    }
+  }
 
   // log out function to log the user out of google and set the profile array to null
-  const logOut = () => {
-      googleLogout();
-      setProfile(null);
-  };
+  // const logOut = () => {
+  //     googleLogout();
+  //     setProfile(null);
+  // };
 
 
   // function onSignIn(googleUser) {
@@ -198,6 +217,7 @@ function Login(props) {
               className="pl-2 mt-1 block w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter your password"
             />}
+            <img id='passwordImage' src='https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png' className='h-5 w-5 inline-block ml-[93%] mt-[-13.75%]' onClick={handlePasswordVisibility}></img>
           {/* <input
             type="password"
             id="password"

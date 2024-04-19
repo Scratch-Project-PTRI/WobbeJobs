@@ -31,10 +31,16 @@ function Signup(props) {
     
   };
 
-  const handleHaveAccount = (e) => {
-    e.preventDefault();
-    navigate('/');
-  };
+  function handlePasswordVisibility() {
+    if(document.getElementById('password').getAttribute('type') === 'password') {
+      document.getElementById('password').setAttribute('type', 'text');
+      document.getElementById('passwordImage').setAttribute('src', 'https://media.geeksforgeeks.org/wp-content/uploads/20210917150049/eyeslash.png')
+    } else {
+      document.getElementById('password').setAttribute('type', 'password');
+      document.getElementById('passwordImage').setAttribute('src', 'https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png')
+    }
+  }
+
   return (
     <div className="min-h-screen flex justify-center  items-center bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
     
@@ -81,6 +87,7 @@ function Signup(props) {
           className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           placeholder="Enter your password"
         />
+        <img id='passwordImage' src='https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png' className='h-5 w-5 inline-block ml-[93%] mt-[-13.75%]' onClick={handlePasswordVisibility}></img>
       </div>
       <button
         onClick={handleSignup}

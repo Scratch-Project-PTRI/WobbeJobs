@@ -69,7 +69,7 @@ authController.verifyUser = (req, res, next) => {
 };
 
 authController.updateEmail = (req, res, next) => {
-  const { email, newEmail } = req.body;
+  const { email, newEmail } = res.locals.body;
   console.log(email, newEmail);
   if(newEmail !== '') {
     Auth.updateOne({email}, {$set: {email: newEmail}})
@@ -93,6 +93,7 @@ authController.updateEmail = (req, res, next) => {
 
 authController.updatePassword = (req, res, next) => {
   const { email, newPassword } = req.body;
+  res.locals.body = req.body;
   if(newPassword !== '') {
     let bcryptPassword;
     async function hashPassword() {
