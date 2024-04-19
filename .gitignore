@@ -13,6 +13,7 @@ npm-debug.log*
 build/
 
 api/old-test-apis
+server/api/googlejobs.js
 
 screenshot.png
 ziprecruiter-screenshot.png
