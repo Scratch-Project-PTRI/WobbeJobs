@@ -10,8 +10,38 @@ function EditProfile(props) {
   let newPassword;
 
   const updateProfile = async () => {
-    
+    try {
+      const response = await fetch("/editprofile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: props.currentEmail,
+          newEmail,
+          newPassword,
+        }),
+      });
+      if(response.status === 200) {
+        alert('Successfully profile')
+        props.setCurrentEmail(newEmail);
+        navigate('/home');
+      } else {
+        alert('Error updating profile')
+      }
+    } catch (error) {
+      console.log("Error updating from edit profile:", error);
+    }
   }
+
+  const handleUpdateProfile = (e) => {
+    e.preventDefault();
+    newEmail = document.getElementById('email').value;
+    newPassword = document.getElementById('password').value;
+    console.log('current email: ', props.currentEmail);
+    console.log('newEmail: ', newEmail);
+    console.log('newPassword: ', newPassword);
+    updateProfile();
+  };
+
 
   const updateEmail = async () => {
     try {
@@ -85,20 +115,22 @@ function EditProfile(props) {
         <h1 className='text-lg font-semibold mb-4'>Hello {props.currentEmail}</h1>
       </div>
 
-<div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-    <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+<div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+    <svg className="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
 </div>
 
-      <span className="login-container">
+      <span className="profile-container">
         <label>Username:</label>
         <input type="email" id="email" name="username" placeholder="Enter new Email" className='pl-2'/>
-        <button onClick={handleUpdateEmail}>Update Email</button>
+        {/* <button onClick={handleUpdateEmail}>Update Email</button> */}
         <br />
 
         <label className="password-login">Password:</label>
         <input type="password" id="password" name="password" placeholder="Enter new Password" className='pl-2'/>
-        <button onClick={handleUpdatePassword}>Update Password</button>
+        {/* <button onClick={handleUpdatePassword}>Update Password</button> */}
       </span>
+        <button onClick={handleUpdateProfile}>Update Profile</button>
+
     </div>
   );
 }

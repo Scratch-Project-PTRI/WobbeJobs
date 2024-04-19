@@ -85,6 +85,11 @@ app.post('/editpassword', authController.updatePassword, (req, res) => {
   return res.status(200).json(res.locals.data);
 });
 
+app.post('/editprofile', authController.updatePassword, authController.updateEmail, (req, res) => {
+  console.log('inside EDIT Profile route');
+  return res.status(200).json(res.locals.data);
+});
+
 app.use((req, res) => {
   return res.status(200).sendFile(path.join(__dirname, "../build/index.html"), (err) => {
       if (err) {
