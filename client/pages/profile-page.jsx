@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-const wobblegongImg =
-  "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
+import logo from '../assets/wobbe_mascot2.png';
+
 
 function EditProfile(props) {
   const navigate = useNavigate();
@@ -103,20 +103,26 @@ function EditProfile(props) {
     };
   
   return (
-    <div className="search-page min-h-screen bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
+    <div className="search-page min-h-screen bg-gradient-to-br from-blue-100 via-sky-200 to-blue-300">
       <div>
         <img
-          src={wobblegongImg}
-          className="h-10 w-auto"
+          src={logo}
+          style={{height: '100vh', width: '100vh', position : 'fixed', left: '50%', top: '15%', zIndex: '10', transform: 'translateX(-50%)', opacity:'0.5'  }} 
+          alt= 'tasselled wobbegong shark'
+          className="cursor-pointer pointer-events-auto"
           onClick={() => navigate("/home")}
         />
       </div>
       <div className='flex justify-center'>
         <h1 className='text-lg font-semibold mb-4'>Hello {props.currentEmail}</h1>
       </div>
+    <div style={{height: '25vh'}}>
 
-<div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-    <svg className="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+    
+<div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+    <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+</div>
+
 </div>
 
       <span className="profile-container">
@@ -129,7 +135,7 @@ function EditProfile(props) {
         <input type="password" id="password" name="password" placeholder="Enter new Password" className='pl-2'/>
         {/* <button onClick={handleUpdatePassword}>Update Password</button> */}
       </span>
-        <button onClick={handleUpdateProfile}>Update Profile</button>
+        <button onClick={handleUpdateProfile}   className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-50 hover:text-blue-500 w-auto h-9" >Update Profile</button>
 
     </div>
   );
