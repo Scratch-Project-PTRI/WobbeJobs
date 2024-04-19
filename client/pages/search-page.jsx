@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import EditProfile from './profile-page.jsx';
 import { useNavigate } from 'react-router-dom';
 import Listing from '../components/Listing.jsx';
 import { Watch } from 'react-loader-spinner';
@@ -10,7 +9,6 @@ function Search(props) {
   const [jobTitle, setJobTitle] = useState('');
   const [jobLocation, setLocation] = useState('');
   const [jobRadius, setRadius] = useState('');
-  // const [savedSearch, setSavedSearch] = useState("");
 
   const handleEditingProfile = (e) => {
     e.preventDefault();
@@ -81,52 +79,6 @@ function Search(props) {
         Edit Profile
       </button>
 
-      {/* 
-        src={wobblegongImg}
-        onClick={() => navigate('/home')}
-        className="w-64 h-auto"
-      />
-      <button onClick={handleEditingProfile}> Edit Profile</button>
-      <div className="mb-4">
-      <label className="block text-gray-700 ">Job Title:</label>
-      <input
-      type="text"
-      className="mt-1 block w-[25%] border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
-      placeholder="Enter your desired Job Title..."
-      value={jobTitle}
-      onChange={(e) => setJobTitle(e.target.value)}
-      required
-      />
-      </div>
-      <div className="mb-6">
-      <label className="block text-gray-700">Location:</label>
-      <input
-      type="text"
-      name="location"
-          className="mt-1 block w-[25%] border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          placeholder="Enter your desired Location..."
-          value={jobLocation}
-          onChange={(e) => setLocation(e.target.value)}
-          required
-          />
-          </div>
-          <div className="mb-6">
-          <label className="block text-gray-700">Radius:</label>
-          <input
-          type="text"
-          name="radius"
-          className="mt-1 block w-[25%] border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          placeholder="Enter your desired Radius..."
-          value={jobRadius}
-          onChange={(e) => setRadius(e.target.value)}
-          />
-          </div>
-          <button
-          onClick={handleSearch}
-          className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
-          >
-          Search
-        </button> */}
       <div className="flex justify-center">
         <h1 className="text-lg font-semibold mb-4">
           Welcome {props.currentEmail}
