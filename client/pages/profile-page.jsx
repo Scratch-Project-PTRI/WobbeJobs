@@ -107,9 +107,9 @@ function EditProfile(props) {
       <div>
         <img
           src={logo}
-          style={{height: '100vh', width: '100vh', position : 'fixed', left: '50%', top: '15%', zIndex: '10', transform: 'translateX(-50%)', opacity:'0.5'  }} 
+          style={{height: '100vh', width: '100vh', position : 'fixed', left: '50%', top: '15%', zIndex: '10', transform: 'translateX(-50%)', opacity:'0.5' }} 
           alt= 'tasselled wobbegong shark'
-          className="cursor-pointer pointer-events-auto"
+          className="cursor-pointer pointer-events-auto ease-in-out animate-pulse"
           onClick={() => navigate("/home")}
         />
       </div>
