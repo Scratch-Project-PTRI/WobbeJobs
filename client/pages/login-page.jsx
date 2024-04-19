@@ -89,11 +89,21 @@ function Login(props) {
   }, [user])
 
 
+  function handlePasswordVisibility() {
+    if(document.getElementById('password').getAttribute('type') === 'password') {
+      document.getElementById('password').setAttribute('type', 'text');
+      document.getElementById('passwordImage').setAttribute('src', 'https://media.geeksforgeeks.org/wp-content/uploads/20210917150049/eyeslash.png')
+    } else {
+      document.getElementById('password').setAttribute('type', 'password');
+      document.getElementById('passwordImage').setAttribute('src', 'https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png')
+    }
+  }
+
   // log out function to log the user out of google and set the profile array to null
-  const logOut = () => {
-      googleLogout();
-      setProfile(null);
-  };
+  // const logOut = () => {
+  //     googleLogout();
+  //     setProfile(null);
+  // };
 
 
   // function onSignIn(googleUser) {
@@ -197,9 +207,10 @@ function Login(props) {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="pl-2 mt-1 block w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="pl-2 mt-1 block w-full rounded-md border shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter your password"
             />}
+            <img id='passwordImage' src='https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png' className='h-5 w-5 inline-block ml-[93%] mt-[-13.75%]' onClick={handlePasswordVisibility}></img>
           {/* <input
             type="password"
             id="password"

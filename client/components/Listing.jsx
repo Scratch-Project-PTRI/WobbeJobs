@@ -17,12 +17,15 @@ const Listing = (props) => {
       <label className='text-md text-white'>Salary: {props.salary}</label><br/>
       <img className="w-auto h-8 mr-2 mb-4" src={logoImage} alt="Logo" />{' '}
       {/* Render the image */}
-      <form action={props.apply} target="_blank" className="mb-4">
-        <button className="font-semibold rounded-full border bg-white p-2 hover:bg-blue-500 hover:text-white">
-          Apply Now
-        </button>
+      {/* <form action={props.apply} target="_blank" className="mb-4"> */}
 
-      </form>
+        <a href={props.apply} target='_blank' className='mb-4'>
+          <button className="font-semibold rounded-full border bg-white p-2 hover:bg-blue-500 hover:text-white">
+            Apply Now
+          </button>
+        </a>
+
+      {/* </form> */}
     </div>
   );
 };
