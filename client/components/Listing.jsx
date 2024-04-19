@@ -10,12 +10,12 @@ const Listing = (props) => {
     logoImage = indeedLogo;
   }
   return(
-    <div className='bg-blue-100 border w-[40%] flex justify-center items-center flex-col rounded-2xl mb-5 shadow-lg'>
+    <div className='bg-blue-200 border w-[50%] flex justify-center items-center flex-col rounded-2xl mb-5 shadow-lg'>
       <label className='font-bold text-lg pt-4'>{props.title}</label><br/>
-      <label className='text-md text-gray-400'>{props.company}</label><br/>
-      <label className='text-md text-gray-400'>Salary: {props.salary}</label><br/>
+      <label className='text-md font-semibold text-white'>{props.company}</label><br/>
+      <label className='text-md text-white'>Salary: {props.salary}</label><br/>
 
-      <img className="w-16 h-16 mr-2" src={logoImage} alt="Logo" /> {/* Render the image */}
+      <img className="w-auto h-8 mr-2 mb-4" src={logoImage} alt="Logo" /> {/* Render the image */}
       
       <form action={props.apply} target='_blank' className='mb-4'>
         <button className='font-semibold rounded-full border bg-white p-2 hover:bg-blue-500 hover:text-white'>Apply Now</button>
