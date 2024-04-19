@@ -1,4 +1,7 @@
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 
 const indeedController = {};
 
@@ -20,6 +23,8 @@ indeedController.searchIndeed = async (req, res, next) => {
   await page.goto(
     `https://www.indeed.com/jobs?q=${req.body.jobTitle}&l=${req.body.jobLocation}&radius=${req.body.jobRadius}`
   );
+
+  await page.screenshot({ path: 'indeed-screenshot.png' });
 
   const data = await page.evaluate(() => {
     const jobElements = document.querySelectorAll('.job_seen_beacon');
