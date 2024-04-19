@@ -1,37 +1,42 @@
-import React, { useState } from "react";
-import EditProfile from "./profile-page.jsx";
-import { useNavigate } from "react-router-dom";
-import Listing from "../components/Listing.jsx";
+import React, { useState } from 'react';
+import EditProfile from './profile-page.jsx';
+import { useNavigate } from 'react-router-dom';
+import Listing from '../components/Listing.jsx';
+import { Watch } from 'react-loader-spinner';
 const wobblegongImg =
-  "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
+  'https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg';
+import zipRecruiterLogo from '../assets/images/zip.png';
+import indeedLogo from '../assets/images/indeed.png';
 
-function Search() {
+function Search(props) {
   const navigate = useNavigate();
-  const [jobTitle, setJobTitle] = useState("");
-  const [jobLocation, setLocation] = useState("");
-  const [jobRadius, setRadius] = useState("");
+  const [jobTitle, setJobTitle] = useState('');
+  const [jobLocation, setLocation] = useState('');
+  const [jobRadius, setRadius] = useState('');
+  // const [savedSearch, setSavedSearch] = useState("");
 
   const handleEditingProfile = (e) => {
     e.preventDefault();
-    navigate("/editprofile");
+    navigate('/editprofile');
   };
 
   const [listings, setListings] = useState([]);
   const [searched, setSearched] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log("Scrape Data");
+    setLoading(true);
+    console.log('Scrape Data');
     const fetchData = async () => {
       try {
         if (!jobTitle || !jobLocation) {
-          console.log("Job title and Location are required");
+          alert('Job title and Location are required');
           return;
         }
-
-        const response = await fetch("/search", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        const response = await fetch('/search', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             jobTitle,
             jobLocation,
@@ -39,27 +44,27 @@ function Search() {
           }),
         });
         const data = await response.json();
-        console.log("RESPONSE from Scrape ---->", data);
-        // const data = [{jobTitle: 'Title1', priceTitle: 'Salary1', quickApplyLink: 'Link1'},
-        // {jobTitle: 'Title2', priceTitle: 'Salary2', quickApplyLink: 'Link2'},
-        // {jobTitle: 'Title3', priceTitle: 'Salary3', quickApplyLink: 'Link3'},
-        // {jobTitle: 'Title4', priceTitle: 'Salary4', quickApplyLink: 'Link4'}];
-        // console.log(data);
+        console.log('RESPONSE from Scrape ---->', data);
+
         const temp = [];
         for (let i = 0; i < data.length; i++) {
           temp.push(
             <Listing
               title={data[i].jobTitle}
+              company={data[i].companyName}
               salary={data[i].priceTitle}
               apply={data[i].quickApplyLink}
+              // source={data[i].src === 'Indeed' ? indeedLogo : zipRecruiterLogo}
+              source={data[i].src}
               key={i}
             />
           );
         }
         setListings(temp);
+        setLoading(false);
         setSearched(true);
       } catch (error) {
-        console.log("Error scraping from Front End Fetch:", error);
+        console.log('Error scraping from Front End Fetch:', error);
       }
     };
     fetchData();
@@ -70,10 +75,12 @@ function Search() {
       <img
         src={wobblegongImg}
         className="h-10 w-auto"
-        onClick={() => navigate("/home")}
+        onClick={() => navigate('/home')}
       />
-      <button className="border" onClick={handleEditingProfile}>
-        {" "}
+      <button
+        className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-50 hover:text-blue-500"
+        onClick={handleEditingProfile}
+      >
         Edit Profile
       </button>
 
@@ -123,6 +130,11 @@ function Search() {
           >
           Search
         </button> */}
+      <div className="flex justify-center">
+        <h1 className="text-lg font-semibold mb-4">
+          Welcome {props.currentEmail}
+        </h1>
+      </div>
 
       <div className="mb-4 flex justify-center">
         <input
@@ -145,7 +157,7 @@ function Search() {
         <input
           type="text"
           name="radius"
-          className="mr-2 pl-2 w-[5%] border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          className="mr-2 pl-2 w-[6%] border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           placeholder="Radius..."
           value={jobRadius}
           onChange={(e) => setRadius(e.target.value)}
@@ -159,8 +171,29 @@ function Search() {
       </div>
 
       <div>
+        {loading ? (
+          <div className="mt-40 flex justify-center">
+            <Watch
+              visible={true}
+              height="80"
+              width="80"
+              radius="48"
+              color="#4fa94d"
+              ariaLabel="watch-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
+        ) : null}
         {searched ? (
-          <div className="flex flex-col items-center">{listings}</div>
+          <div className="flex justify-center w-[50%]">
+            <div
+              className="flex justify- ceneter flex-col items-center"
+              style={{ maxHeight: '900px', overflowY: 'scroll' }}
+            >
+              {listings}
+            </div>
+          </div>
         ) : null}
       </div>
     </div>

@@ -46,7 +46,7 @@ searchController.searchZipRecruiter = async (req, res, next) => {
         );
         const priceTitle = priceTitleElement
           ? priceTitleElement.textContent.trim()
-          : 'Salary not found';
+          : 'N/A';
 
         // Selecting anchor elements directly by their href attribute
         const quickApplyLinkElement = parentElement.querySelector(
@@ -56,19 +56,18 @@ searchController.searchZipRecruiter = async (req, res, next) => {
           ? quickApplyLinkElement.href
           : null;
 
-        const companyNameElement = parentElement.querySelector(
-          '[data-testid=“job-card-company”]'
-        );
-        const companyName = companyNameElement
-          ? companyNameElement.textContent.trim()
-          : 'company name';
-
+          const companyNameElement = parentElement.querySelector('[data-testid="job-card-company"]');
+          const companyName = companyNameElement
+            ? companyNameElement.textContent.trim()
+            : 'company name';
+          
+        const src = "ZipRecruiter";
         results.push({
           jobTitle,
           priceTitle,
           quickApplyLink,
           companyName,
-          src: 'ZipRecruiter',
+          src,
         });
       });
 
