@@ -3,10 +3,7 @@ import EditProfile from './profile-page.jsx';
 import { useNavigate } from 'react-router-dom';
 import Listing from '../components/Listing.jsx';
 import { Watch } from 'react-loader-spinner';
-const wobblegongImg =
-  'https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg';
-import zipRecruiterLogo from '../assets/images/zip.png';
-import indeedLogo from '../assets/images/indeed.png';
+const wobblegongImg = "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
 
 function Search(props) {
   const navigate = useNavigate();
@@ -26,6 +23,7 @@ function Search(props) {
 
   const handleSearch = (e) => {
     e.preventDefault();
+    setSearched(false);
     setLoading(true);
     console.log('Scrape Data');
     const fetchData = async () => {
@@ -54,7 +52,6 @@ function Search(props) {
               company={data[i].companyName}
               salary={data[i].priceTitle}
               apply={data[i].quickApplyLink}
-              // source={data[i].src === 'Indeed' ? indeedLogo : zipRecruiterLogo}
               source={data[i].src}
               key={i}
             />

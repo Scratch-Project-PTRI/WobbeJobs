@@ -37,7 +37,26 @@ function Signup(props) {
   };
   return (
     <div className="min-h-screen flex justify-center  items-center bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
-    <div className="max-w-md w-full bg-white rounded-xl shadow-2xl p-8">
+    
+      <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden" />
+      
+        <video
+            autoPlay
+            loop
+            muted
+            className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
+        >
+            <source
+                // src='https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4'
+                // type="video/mp4"
+
+                src='../assets/AdobeStock_301424944 [preview-fishies].mp4' 
+                type="video/mp4"
+            />
+        Your browser does not support the video tag.
+        </video>
+        
+    <div className="max-w-md w-full bg-white z-10 rounded-xl shadow-2xl p-8">
       <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
         Need a new account? You've come to the right place!
       </h2>
