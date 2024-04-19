@@ -21,7 +21,7 @@ function EditProfile(props) {
         }),
       });
       if(response.status === 200) {
-        alert('Successfully profile')
+        alert('Profile Updated')
         props.setCurrentEmail(newEmail);
         navigate('/home');
       } else {
