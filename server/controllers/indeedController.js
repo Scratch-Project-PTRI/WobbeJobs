@@ -1,4 +1,7 @@
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 
 const indeedController = {};
 
@@ -12,7 +15,7 @@ indeedController.searchIndeed = async (req, res, next) => {
   );
 
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     defaultViewport: false,
   });
 
@@ -20,6 +23,8 @@ indeedController.searchIndeed = async (req, res, next) => {
   await page.goto(
     `https://www.indeed.com/jobs?q=${req.body.jobTitle}&l=${req.body.jobLocation}&radius=${req.body.jobRadius}`
   );
+
+  await page.screenshot({ path: 'indeed-screenshot.png' });
 
   const data = await page.evaluate(() => {
     const jobElements = document.querySelectorAll('.job_seen_beacon');
@@ -34,7 +39,7 @@ indeedController.searchIndeed = async (req, res, next) => {
       );
       const priceTitle = priceTitleElement
         ? priceTitleElement.textContent.trim()
-        : 'Salary not found';
+        : 'N/A';
       // https://www.indeed.com/rc
       const quickApplyLinkElement = jobElement.querySelector(
         'a.jcs-JobTitle.css-jspxzf.eu4oa1w0'
@@ -44,7 +49,22 @@ indeedController.searchIndeed = async (req, res, next) => {
         ? quickApplyLinkElement.href
         : 'quick apply condition';
 
-      results.push({ jobTitle, priceTitle, quickApplyLink });
+      const companyNameElement = jobElement.querySelector(
+        '.css-92r8pb.eu4oa1w0'
+      );
+      const companyName = companyNameElement
+        ? companyNameElement.textContent.trim()
+        : 'Company not found';
+
+      const src = 'Indeed';
+
+      results.push({
+        jobTitle,
+        priceTitle,
+        quickApplyLink,
+        companyName,
+        src,
+      });
     });
 
     return results;
