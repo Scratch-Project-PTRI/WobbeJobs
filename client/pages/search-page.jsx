@@ -69,7 +69,7 @@ function Search(props) {
 
   return (
     <div className="search-page min-h-screen" style={{ backgroundImage: `url('../assets/AdobeStock_689555388_deepsea.jpeg')`, backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed' ,height: '100vh'}}>
-      <div style={{ zIndex: 30, position: 'absolute', left: '2%', top: '4%', fontFamily: 'pacifico', color: 'white', fontSize: '4rem' }}>
+      <div style={{ zIndex: 30, left: '2%', top: '4%', fontFamily: 'pacifico', color: 'white', fontSize: '4rem' }}>
         WobbeJobs
       </div>  
       <img
@@ -131,13 +131,13 @@ function Search(props) {
           >
           Search
         </button> */}
-          <div className="flex justify-center relative">
-            <h1 className="text-lg font-semibold mb-4" style={{color: 'black'}}>
+          <div className="flex justify-center mt-12">
+            <h1 className="text-3xl font-semibold mb-4 text-white text-center">
               Happy Hunting, <br/> {props.currentEmail}
             </h1>
           </div>
 
-      <div className="mb-4 flex justify-center mt-20">
+      <div className="mb-4 flex justify-center mt-8">
         <input
           type="text"
           className="mr-2 pl-2 w-[15%] border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
@@ -172,7 +172,7 @@ function Search(props) {
       </div>      
 
 
-      <div>
+      <div className='flex justify-center'>
         {loading ? (
           <div className="mt-40 flex justify-center">
             <Watch
@@ -188,10 +188,10 @@ function Search(props) {
           </div>
         ) : null}
         {searched ? (
-          <div className="flex justify-center w-[50%]">
+          <div className="flex items-center justify-center w-[50%]">
             <div
-              className="flex justify- ceneter flex-col items-center"
-              style={{ maxHeight: '900px', overflowY: 'scroll' }}
+              className="flex flex-col items-center"
+              style={{ maxHeight: '550px', overflowY: 'scroll' }}
             >
               {listings}
             </div>
