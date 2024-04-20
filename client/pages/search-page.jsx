@@ -68,14 +68,13 @@ function Search(props) {
   };
 
   return (
-    <div className="search-page min-h-screen bg-[url('/Users/jewelclarke/Desktop/PTRI Cohort 14/scratch-project/client/assets/AdobeStock_689555388_deepsea.jpeg')]">
-         <div style={{zIndex:'30', position : 'absolute', left: '2%', top: '4%', fontFamily:'pacifico', color: 'black', fontSize:'4rem' }}>
+    <div className="search-page min-h-screen" style={{ backgroundImage: `url('../assets/AdobeStock_689555388_deepsea.jpeg')`, backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed' ,height: '100vh'}}>
+      <div style={{ zIndex: 30, position: 'absolute', left: '2%', top: '4%', fontFamily: 'pacifico', color: 'white', fontSize: '4rem' }}>
         WobbeJobs
-      </div>
-
+      </div>  
       <img
         src={wobblegongImg}
-        style={{height: '175px', width: '175px', position : 'absolute', left: '32%', top: '-2%', zIndex: '30', transform: 'translateX(-50%)'}} 
+        style={{height: '165px', width: '165px', position : 'absolute', left: '32%', top: '-2%', zIndex: '30', transform: 'translateX(-50%)'}} 
         alt= 'tasselled wobbegong shark'
         onClick={() => navigate('/home')}
       />
@@ -133,12 +132,12 @@ function Search(props) {
           Search
         </button> */}
           <div className="flex justify-center relative">
-            <h1 className="text-lg font-semibold mb-4">
+            <h1 className="text-lg font-semibold mb-4" style={{color: 'black'}}>
               Happy Hunting, <br/> {props.currentEmail}
             </h1>
           </div>
 
-      <div className="mb-4 flex justify-center">
+      <div className="mb-4 flex justify-center mt-20">
         <input
           type="text"
           className="mr-2 pl-2 w-[15%] border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
@@ -159,7 +158,7 @@ function Search(props) {
         <input
           type="text"
           name="radius"
-          className="mr-2 pl-2 w-[6%] border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          className="mr-2 pl-2 w-[6%]  border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           placeholder="Radius..."
           value={jobRadius}
           onChange={(e) => setRadius(e.target.value)}
