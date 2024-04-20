@@ -10,7 +10,7 @@ function LandingPage (){
     }
   return (
    <> 
-    <header className="relative flex flex-col justify-evenly items-center justify-center h-screen mb-12 overflow-hidden">
+    <header className="relative flex flex-col justify-evenly items-center justify-center h-screen overflow-hidden">
             <div style={{zIndex:'30', position : 'absolute', left: '5%', top: '5%', fontFamily: 'pacifico', color: 'white', fontSize:'4.25rem' }}>
                 WobbeJobs
             </div>
@@ -38,7 +38,7 @@ function LandingPage (){
                 autoPlay
                 loop
                 muted
-                className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
+                className="absolute z-10 min-w-screen min-h-screen"
             >
                 <source
 
