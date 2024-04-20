@@ -10,7 +10,7 @@ function LandingPage (){
     }
   return (
    <> 
-    <header className="relative flex flex-col justify-evenly items-center justify-center h-screen overflow-hidden">
+    <header className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
             <div style={{zIndex:'30', position : 'absolute', left: '5%', top: '5%', fontFamily: 'pacifico', color: 'white', fontSize:'4.25rem' }}>
                 WobbeJobs
             </div>
@@ -19,7 +19,7 @@ function LandingPage (){
 
             </div>
             <br/>
-            <div className= 'text-4xl text-white text-center z-30'>
+            <div className= 'text-4xl mt-20 text-white text-center z-30'>
                 <h1 style={{fontFamily:'poppins'}}>
                     The job market is vast,<br></br>
                     your succesful hunt starts here
@@ -29,7 +29,7 @@ function LandingPage (){
             
             <button style={{fontFamily:'poppins'}} onClick= {loginPageClick}
                 className="relative shadow-2xl hover:scale-125
-                hover:bg-opacity-50 shadow-white z-30 p-5 text-2xl text-white bg-blue-300 bg-opacity-70 rounded-xl">
+                hover:bg-opacity-50 shadow-white z-30 p-5 text-2xl text-white bg-blue-300 bg-opacity-70 rounded-xl mt-10">
                 Jump In!
             </button>
 

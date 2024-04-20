@@ -69,15 +69,16 @@ function Search(props) {
 
   return (
     <div className="search-page min-h-screen" style={{ backgroundImage: `url('../assets/AdobeStock_689555388_deepsea.jpeg')`, backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed' ,height: '100vh'}}>
-      <div style={{ zIndex: 30, left: '2%', top: '4%', fontFamily: 'pacifico', color: 'white', fontSize: '4rem' }}>
+      <div className='pl-[5%] pt-[5%]' style={{ zIndex: 30, fontFamily: 'pacifico', color: 'white', fontSize: '4rem' }}>
         WobbeJobs
       </div>  
-      <img
-        src={wobblegongImg}
-        style={{height: '165px', width: '165px', position : 'absolute', left: '32%', top: '-2%', zIndex: '30', transform: 'translateX(-50%)'}} 
-        alt= 'tasselled wobbegong shark'
-        onClick={() => navigate('/home')}
-      />
+      <div className='flex justify-center ml-[-420px] mt-[-110px]'>
+        <img
+          src={wobblegongImg}
+          alt= 'tasselled wobbegong shark'
+          className='h-[125px] w-[125px]'
+        />
+      </div>
       <button
         className="bg-blue-500 absolute top-10 right-10 text-white font-bold py-2 px-4 rounded hover:bg-blue-50 hover:text-blue-500"
         onClick={handleEditingProfile}
@@ -131,7 +132,7 @@ function Search(props) {
           >
           Search
         </button> */}
-          <div className="flex justify-center mt-12">
+          <div className="flex justify-center">
             <h1 className="text-3xl font-semibold mb-4 text-white text-center">
               Happy Hunting, <br/> {props.currentEmail}
             </h1>
