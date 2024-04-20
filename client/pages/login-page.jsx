@@ -152,10 +152,7 @@ function Login(props) {
       <div style={{zIndex:'30', position : 'absolute', left: '5%', top: '5%', fontFamily:'pacifico', color: 'white', fontSize:'4.25rem' }}>
         WobbeJobs
       </div>
-      <div>
-        <img src={logo} style={{height: '250px', width: '250px', position : 'absolute', left: '50%', top: '5%', zIndex: '30', transform: 'translateX(-50%)'   }} alt= 'tasselled wobbegong shark'/>
-      </div>
-
+      
       <header className="flex items-center justify-center h-screen overflow-hidden" />
       
         <video
@@ -173,7 +170,10 @@ function Login(props) {
         </video>
         
       <div className="max-w-md w-full z-10 bg-white rounded-xl shadow-2xl p-8">
-        <h2 className="text-3xl font-semibold text-center text-gray-700 mb-8">
+        <div className='flex justify-center mt-[-150px]'>
+          <img src={logo} className='h-[250px] w-[250px]' alt= 'tasselled wobbegong shark'/>
+        </div>
+        <h2 className="text-3xl font-semibold text-center text-gray-700 mt-[-50px] mb-8">
           Ready to hunt?
         </h2>
         {invalid ? 
@@ -182,7 +182,7 @@ function Login(props) {
         </div> : 
         null}
         <div className="mb-4">
-          <label className="block text-gray-700 ">Username:</label>
+          <label className="block text-gray-700 ">Email:</label>
           {invalid ? 
             <input
               type="email"

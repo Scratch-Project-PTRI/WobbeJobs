@@ -46,10 +46,8 @@ function Signup(props) {
         WobbeJobs
       </div>
 
-      <div>
-        <img src={logo} style={{height: '250px', width: '250px', position : 'absolute', left: '50%', top: '4%', zIndex: '30', transform: 'translateX(-50%)'   }} alt= 'tasselled wobbegong shark'/>
-      </div>
-      <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden" />
+      
+      {/* <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden" /> */}
       
         <video
             autoPlay
@@ -66,11 +64,14 @@ function Signup(props) {
         </video>
         
     <div className="max-w-md w-full bg-white z-10 rounded-xl shadow-2xl p-8">
-      <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
+      <div className='flex justify-center mt-[-150px]'>
+        <img src={logo} className='h-[250px] w-[250px]' alt= 'tasselled wobbegong shark'/>
+      </div>
+      <h2 className="text-3xl font-semibold text-center text-gray-800 mt-[-50px] mb-8">
         Need a new account? You've come to the right place!
       </h2>
       <div className="mb-4">
-        <label className="block text-gray-700 ">Username:</label>
+        <label className="block text-gray-700 ">Email:</label>
         <input
           type="email"
           id="email"
