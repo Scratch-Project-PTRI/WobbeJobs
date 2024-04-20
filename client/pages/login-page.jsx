@@ -156,13 +156,13 @@ function Login(props) {
         <img src={logo} style={{height: '250px', width: '250px', position : 'absolute', left: '50%', top: '5%', zIndex: '30', transform: 'translateX(-50%)'   }} alt= 'tasselled wobbegong shark'/>
       </div>
 
-      <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden" />
+      <header className="flex items-center justify-center h-screen overflow-hidden" />
       
         <video
             autoPlay
             loop
             muted
-            className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
+            className="absolute min-w-screen min-h-screen"
         >
             <source
 
