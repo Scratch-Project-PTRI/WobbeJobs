@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
+import logo from '../assets/wobbe_mascot2.png';
 
 function Login(props) {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ function Login(props) {
     if (user) {
       fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
         method: 'GET',
-        mode: 'no-cors',
+        // mode: 'no-cors',
         headers: {
           Authorization: `Bearer ${user.access_token}`,
           Accept: 'application/json',
@@ -75,12 +76,14 @@ function Login(props) {
         //  "Access-Control-Allow-Origin": 'http://localhost:8080',
         }
       })
-          // .then(res => res.json())
+          .then(res => res.json())
           .then((res) => {
             console.log(res);
-            setProfile(res.data);
-            console.log(profile.email);
-            console.log(profile.name);
+            setProfile(res);
+            googleEmail(res.email);
+            console.log(res.email);
+            console.log(res.name);
+            // navigate('/home');
           })
           .catch((err) => console.log(err));
     };
@@ -88,12 +91,29 @@ function Login(props) {
     console.log(profile);
   }, [user])
 
+  function googleEmail(email) {
+    console.log('google email: ', email);
+    if(email) {
+      props.setCurrentEmail(email);
+      navigate('/home');
+    }
+  }
+
+  function handlePasswordVisibility() {
+    if(document.getElementById('password').getAttribute('type') === 'password') {
+      document.getElementById('password').setAttribute('type', 'text');
+      document.getElementById('passwordImage').setAttribute('src', 'https://media.geeksforgeeks.org/wp-content/uploads/20210917150049/eyeslash.png')
+    } else {
+      document.getElementById('password').setAttribute('type', 'password');
+      document.getElementById('passwordImage').setAttribute('src', 'https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png')
+    }
+  }
 
   // log out function to log the user out of google and set the profile array to null
-  const logOut = () => {
-      googleLogout();
-      setProfile(null);
-  };
+  // const logOut = () => {
+  //     googleLogout();
+  //     setProfile(null);
+  // };
 
 
   // function onSignIn(googleUser) {
@@ -129,26 +149,31 @@ function Login(props) {
   return (
  
     <div className="min-h-screen flex justify-center  items-center bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
-          <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden" />
+      <div style={{zIndex:'30', position : 'absolute', left: '5%', top: '5%', fontFamily:'pacifico', color: 'white', fontSize:'4.25rem' }}>
+        WobbeJobs
+      </div>
+      
+      <header className="flex items-center justify-center h-screen overflow-hidden" />
       
         <video
             autoPlay
             loop
             muted
-            className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
+            className="absolute min-w-screen min-h-screen"
         >
             <source
-                // src='https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4'
-                // type="video/mp4"
 
-                src='../assets/office_walkers.mp4' 
+                src='../assets/AdobeStock_301424944[fish_flurry].mp4' 
                 type="video/mp4"
             />
         Your browser does not support the video tag.
         </video>
         
       <div className="max-w-md w-full z-10 bg-white rounded-xl shadow-2xl p-8">
-        <h2 className="text-3xl font-semibold text-center text-gray-700 mb-8">
+        <div className='flex justify-center mt-[-150px]'>
+          <img src={logo} className='h-[250px] w-[250px]' alt= 'tasselled wobbegong shark'/>
+        </div>
+        <h2 className="text-3xl font-semibold text-center text-gray-700 mt-[-50px] mb-8">
           Ready to hunt?
         </h2>
         {invalid ? 
@@ -157,7 +182,7 @@ function Login(props) {
         </div> : 
         null}
         <div className="mb-4">
-          <label className="block text-gray-700 ">Username:</label>
+          <label className="block text-gray-700 ">Email:</label>
           {invalid ? 
             <input
               type="email"
@@ -200,6 +225,7 @@ function Login(props) {
               className="pl-2 mt-1 block w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter your password"
             />}
+            <img id='passwordImage' src='https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png' className='h-5 w-5 inline-block ml-[93%] mt-[-13.75%]' onClick={handlePasswordVisibility}></img>
           {/* <input
             type="password"
             id="password"

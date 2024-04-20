@@ -37,7 +37,6 @@ indeedController.searchIndeed = async (req, res, next) => {
       const priceTitleElement = jobElement.querySelector(
         '.metadata.salary-snippet-container'
       );
-
       let priceTitle;
 
       if (priceTitleElement !== null) {

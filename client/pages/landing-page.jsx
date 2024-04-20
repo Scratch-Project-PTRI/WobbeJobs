@@ -1,11 +1,5 @@
-
-// landing page will have video
-// getting started button routes to signup
-// login in link goes to login page
-
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-// import video from "../assets/office_walkers.mp4";
 import logo from '../assets/wobbe_mascot2.png';
 
 
@@ -15,32 +9,46 @@ function LandingPage (){
         navigate('/login');
     }
   return (
-    <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden">
-        <button onClick= {loginPageClick}
-             className="relative z-30 p-5 text-2xl text-white bg-blue-300 bg-opacity-70 rounded-xl">
-            The job market is vast,<br></br>
-            your succesful hunt starts here
-        </button>
-        <video
-            autoPlay
-            loop
-            muted
-            className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
-        >
-            <source
-                // src='https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4'
-                // type="video/mp4"
+   <> 
+    <header className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
+            <div style={{zIndex:'30', position : 'absolute', left: '5%', top: '5%', fontFamily: 'pacifico', color: 'white', fontSize:'4.25rem' }}>
+                WobbeJobs
+            </div>
+            <div>
+                <img src={logo} style={{height: '250px', width: '250px', position : 'absolute', left: '50%', top: '15%', zIndex: '30', transform: 'translateX(-50%)'   }} alt= 'tasselled wobbegong shark'/>
 
-                // src={video}
-                // type="video/mp4"
+            </div>
+            <br/>
+            <div className= 'text-4xl mt-20 text-white text-center z-30'>
+                <h1 style={{fontFamily:'poppins'}}>
+                    The job market is vast,<br></br>
+                    your succesful hunt starts here
+                </h1> 
+            </div>
+            <div>
+            
+            <button style={{fontFamily:'poppins'}} onClick= {loginPageClick}
+                className="relative shadow-2xl hover:scale-125
+                hover:bg-opacity-50 shadow-white z-30 p-5 text-2xl text-white bg-blue-300 bg-opacity-70 rounded-xl mt-10">
+                Jump In!
+            </button>
 
-                src='../assets/deep_sea2.mp4' 
-                type="video/mp4"
-            />
-    Your browser does not support the video tag.
-        </video>
-        <img src={logo} style={{height: '250px', width: '250px', position : 'absolute', left: '50%', top: '15%', zIndex: '10', transform: 'translateX(-50%)'   }} alt= 'tasselled wobbegong shark'/>
-    </header>
+            </div>
+            <video
+                autoPlay
+                loop
+                muted
+                className="absolute z-10 min-w-screen min-h-screen"
+            >
+                <source
+
+                    src='../assets/deep_sea2.mp4' 
+                    type="video/mp4"
+                />
+        Your browser does not support the video tag.
+            </video>
+        </header>
+    </>
 )};
 
 export default LandingPage;
