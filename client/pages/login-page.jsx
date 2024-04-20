@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
+import logo from '../assets/wobbe_mascot2.png';
 
 function Login(props) {
   const navigate = useNavigate();
@@ -129,7 +130,14 @@ function Login(props) {
   return (
  
     <div className="min-h-screen flex justify-center  items-center bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
-          <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden" />
+      <div style={{zIndex:'30', position : 'absolute', left: '5%', top: '5%', fontFamily:'pacifico', color: 'white', fontSize:'4.25rem' }}>
+        WobbeJobs
+      </div>
+      <div>
+        <img src={logo} style={{height: '250px', width: '250px', position : 'absolute', left: '50%', top: '5%', zIndex: '30', transform: 'translateX(-50%)'   }} alt= 'tasselled wobbegong shark'/>
+      </div>
+
+      <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden" />
       
         <video
             autoPlay
@@ -139,7 +147,7 @@ function Login(props) {
         >
             <source
 
-                src='../assets/AdobeStock_576701363_[fish flurry].mp4' 
+                src='../assets/AdobeStock_301424944[fish_flurry].mp4' 
                 type="video/mp4"
             />
         Your browser does not support the video tag.

@@ -3,7 +3,8 @@ import EditProfile from './profile-page.jsx';
 import { useNavigate } from 'react-router-dom';
 import Listing from '../components/Listing.jsx';
 import { Watch } from 'react-loader-spinner';
-const wobblegongImg = "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
+const wobblegongImg = '../assets/wobbe_mascot2.png';
+const ocean = '../assets/AdobeStock_689555388_deepsea.jpeg';
 
 function Search(props) {
   const navigate = useNavigate();
@@ -68,14 +69,19 @@ function Search(props) {
   };
 
   return (
-    <div className="search-page min-h-screen bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
+    <div className="search-page min-h-screen bg-[url('/Users/jewelclarke/Desktop/PTRI Cohort 14/scratch-project/client/assets/AdobeStock_689555388_deepsea.jpeg')]">
+         <div style={{zIndex:'30', position : 'absolute', left: '2%', top: '4%', fontFamily:'pacifico', color: 'black', fontSize:'4rem' }}>
+        WobbeJobs
+      </div>
+
       <img
         src={wobblegongImg}
-        className="h-10 w-auto"
+        style={{height: '175px', width: '175px', position : 'absolute', left: '32%', top: '-2%', zIndex: '30', transform: 'translateX(-50%)'}} 
+        alt= 'tasselled wobbegong shark'
         onClick={() => navigate('/home')}
       />
       <button
-        className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-50 hover:text-blue-500"
+        className="bg-blue-500 absolute top-10 right-10 text-white font-bold py-2 px-4 rounded hover:bg-blue-50 hover:text-blue-500"
         onClick={handleEditingProfile}
       >
         Edit Profile
@@ -127,11 +133,11 @@ function Search(props) {
           >
           Search
         </button> */}
-      <div className="flex justify-center">
-        <h1 className="text-lg font-semibold mb-4">
-          Welcome {props.currentEmail}
-        </h1>
-      </div>
+          <div className="flex justify-center relative">
+            <h1 className="text-lg font-semibold mb-4">
+              Happy Hunting, <br/> {props.currentEmail}
+            </h1>
+          </div>
 
       <div className="mb-4 flex justify-center">
         <input
@@ -165,7 +171,8 @@ function Search(props) {
         >
           Search
         </button>
-      </div>
+      </div>      
+
 
       <div>
         {loading ? (
