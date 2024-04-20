@@ -127,12 +127,12 @@ function EditProfile(props) {
 
       <span className="profile-container">
         <label>Username:</label>
-        <input type="email" id="email" name="username" placeholder="Enter new Email" className='pl-2'/>
+        <input type="email" id="email" name="username" placeholder="Enter new Email:" className='pl-2'/>
         {/* <button onClick={handleUpdateEmail}>Update Email</button> */}
         <br />
 
         <label className="password-login">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter new Password" className='pl-2'/>
+        <input type="password" id="password" name="password" placeholder="Enter new Password:" className='pl-2'/>
         {/* <button onClick={handleUpdatePassword}>Update Password</button> */}
       </span>
         <button onClick={handleUpdateProfile}   className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-50 hover:text-blue-500 w-auto h-9" >Update Profile</button>
