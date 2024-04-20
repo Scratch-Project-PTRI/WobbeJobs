@@ -43,64 +43,64 @@ function EditProfile(props) {
   };
 
 
-  const updateEmail = async () => {
-    try {
-      const response = await fetch("/editemail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: props.currentEmail,
-          newEmail,
-        }),
-      });
-      if(response.status === 200) {
-        alert('Successfully updated email')
-        props.setCurrentEmail(newEmail);
-        navigate('/home');
-      } else {
-        alert('Error updating email')
-      }
-    } catch (error) {
-      console.log("Error updating from edit profile:", error);
-    }
-  }
+  // const updateEmail = async () => {
+  //   try {
+  //     const response = await fetch("/editemail", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         email: props.currentEmail,
+  //         newEmail,
+  //       }),
+  //     });
+  //     if(response.status === 200) {
+  //       alert('Successfully updated email')
+  //       props.setCurrentEmail(newEmail);
+  //       navigate('/home');
+  //     } else {
+  //       alert('Error updating email')
+  //     }
+  //   } catch (error) {
+  //     console.log("Error updating from edit profile:", error);
+  //   }
+  // }
 
-  const handleUpdateEmail = (e) => {
-    e.preventDefault();
-    newEmail = document.getElementById('email').value;
-    console.log('current email: ', props.currentEmail);
-    console.log('newEmail: ', newEmail);
-    updateEmail();
-  };
+  // const handleUpdateEmail = (e) => {
+  //   e.preventDefault();
+  //   newEmail = document.getElementById('email').value;
+  //   console.log('current email: ', props.currentEmail);
+  //   console.log('newEmail: ', newEmail);
+  //   updateEmail();
+  // };
   
-  const updatePassword = async () => {
-    try {
-      const response = await fetch("/editpassword", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: props.currentEmail,
-          newPassword,
-        }),
-      });
-      if(response.status === 200) {
-        alert('Successfully updated password')
-        navigate('/home');
-      } else {
-        alert('Error updating password')
-      }
-    } catch (error) {
-      console.log("Error updating from edit profile:", error);
-    }
-  }
+  // const updatePassword = async () => {
+  //   try {
+  //     const response = await fetch("/editpassword", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         email: props.currentEmail,
+  //         newPassword,
+  //       }),
+  //     });
+  //     if(response.status === 200) {
+  //       alert('Successfully updated password')
+  //       navigate('/home');
+  //     } else {
+  //       alert('Error updating password')
+  //     }
+  //   } catch (error) {
+  //     console.log("Error updating from edit profile:", error);
+  //   }
+  // }
   
-    const handleUpdatePassword = (e) => {
-      e.preventDefault();
-      newPassword = document.getElementById('password').value;
-      console.log('current email: ', props.currentEmail);
-      console.log('newPassword: ', newPassword);
-      updatePassword();
-    };
+    // const handleUpdatePassword = (e) => {
+    //   e.preventDefault();
+    //   newPassword = document.getElementById('password').value;
+    //   console.log('current email: ', props.currentEmail);
+    //   console.log('newPassword: ', newPassword);
+    //   updatePassword();
+    // };
   
   return (
     <div className="search-page min-h-screen bg-gradient-to-br from-blue-100 via-sky-200 to-blue-300">

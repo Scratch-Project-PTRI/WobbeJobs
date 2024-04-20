@@ -11,20 +11,21 @@ const Listing = (props) => {
   }
 
   return (
-    <div>
-    <div className="bg-blue-200 border w-[95%] flex justify-center items-center flex-col rounded-2xl mb-5 shadow-lg">
-      <label className='font-bold text-lg pt-4'>{props.title}</label><br/>
+    <div className="bg-blue-300 border border-gray-400 w-[95%] flex justify-center items-center flex-col rounded-2xl mb-5 shadow-lg">
+      <label className='font-bold text-lg pt-4 text-wrap px-4 text-center'>{props.title}</label><br/>
       <label className='text-md font-semibold text-white'>{props.company}</label><br/>
       <label className='text-md text-white'>Salary: {props.salary}</label><br/>
       <img className="w-auto h-8 mr-2 mb-4" src={logoImage} alt="Logo" />{' '}
-      <form action={props.apply} target="_blank" className="mb-4">
-        <button className="font-semibold rounded-full border bg-white p-2 hover:bg-blue-500 hover:text-white">
-          Apply Now
-        </button>
+      {/* Render the image */}
+      {/* <form action={props.apply} target="_blank" className="mb-4"> */}
 
-      </form>
-    </div>
+        <a href={props.apply} target='_blank' className='mb-4'>
+          <button className="font-semibold rounded-full border bg-white p-2 hover:bg-blue-500 hover:text-white">
+            Apply Now
+          </button>
+        </a>
 
+      {/* </form> */}
     </div>
   );
 };

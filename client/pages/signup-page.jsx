@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/wobbe_mascot2.png';
 
 function Signup(props) {
   const [email, setEmail] = useState('');
@@ -28,13 +29,26 @@ function Signup(props) {
     });
   };
 
-  const handleHaveAccount = (e) => {
-    e.preventDefault();
-    navigate('/');
-  };
+  function handlePasswordVisibility() {
+    if(document.getElementById('password').getAttribute('type') === 'password') {
+      document.getElementById('password').setAttribute('type', 'text');
+      document.getElementById('passwordImage').setAttribute('src', 'https://media.geeksforgeeks.org/wp-content/uploads/20210917150049/eyeslash.png')
+    } else {
+      document.getElementById('password').setAttribute('type', 'password');
+      document.getElementById('passwordImage').setAttribute('src', 'https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png')
+    }
+  }
+
   return (
     <div className="min-h-screen flex justify-center  items-center bg-gradient-to-br from-teal-50 via-cyan-100 to-green-200">
     
+      <div style={{zIndex:'30', position : 'absolute', left: '5%', top: '5%', fontFamily:'pacifico', color: 'white', fontSize:'4.25rem' }}>
+        WobbeJobs
+      </div>
+
+      <div>
+        <img src={logo} style={{height: '250px', width: '250px', position : 'absolute', left: '50%', top: '4%', zIndex: '30', transform: 'translateX(-50%)'   }} alt= 'tasselled wobbegong shark'/>
+      </div>
       <header className="relative flex items-center justify-center h-screen mb-12 overflow-hidden" />
       
         <video
@@ -45,7 +59,7 @@ function Signup(props) {
         >
             <source
 
-                src='../assets/AdobeStock_301424944 [preview-fishies].mp4' 
+                src='../assets/AdobeStock_680097597[ocean_paradise].mp4' 
                 type="video/mp4"
             />
         Your browser does not support the video tag.
@@ -78,6 +92,7 @@ function Signup(props) {
           className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           placeholder="Enter your password"
         />
+        <img id='passwordImage' src='https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png' className='h-5 w-5 inline-block ml-[93%] mt-[-13.75%]' onClick={handlePasswordVisibility}></img>
       </div>
       <button
         onClick={handleSignup}

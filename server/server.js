@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
+const cors = require('cors');
 const authController = require('./controllers/authController');
 const searchController = require('./controllers/searchController');
 const indeedController = require('./controllers/indeedController');
@@ -23,6 +24,9 @@ mongoose.connection.once('open', () => {
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, './../client')));
+
+
+app.use(cors());
 
 // app.get('/', (req, res) => {
 //   // console.log('inside GET route');
