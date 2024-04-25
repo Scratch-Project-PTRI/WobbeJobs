@@ -10,8 +10,11 @@ const shuffleController = require('./controllers/shuffleController');
 
 const mongoose = require('mongoose');
 
+// mongoose.connect(
+//   'mongodb+srv://wilson7chen:codesmith@scratch.67upbfi.mongodb.net/?retryWrites=true&w=majority&appName=Scratch'
+// );
 mongoose.connect(
-  'mongodb+srv://wilson7chen:codesmith@scratch.67upbfi.mongodb.net/?retryWrites=true&w=majority&appName=Scratch'
+  'mongodb+srv://yjdream86:kaIPgggbzhC54eIT@powerpuffs.mnq5nje.mongodb.net/?retryWrites=true&w=majority&appName=PowerPuffs'
 );
 
 mongoose.connection.once('open', () => {
