@@ -73,11 +73,15 @@ searchController.searchZipRecruiter = async (req, res, next) => {
 
       return results;
     });
+    console.log('zipdata --->', data[0]);
     res.locals.zipResults = data;
     await browser.close();
     return next();
   } catch (error) {
-    next(error);
+    next({
+      log: 'Error in searchController',
+      message: { error: 'Error in searchController'}
+    });
   }
 };
 

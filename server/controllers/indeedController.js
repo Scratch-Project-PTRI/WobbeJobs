@@ -13,7 +13,7 @@ indeedController.searchIndeed = async (req, res, next) => {
     req.body.jobLocation,
     req.body.jobTitle
   );
-
+  try {
   const browser = await puppeteer.launch({
     headless: true,
     defaultViewport: false,
@@ -31,23 +31,31 @@ indeedController.searchIndeed = async (req, res, next) => {
     const results = [];
 
     jobElements.forEach((jobElement) => {
-      const jobTitle = jobElement.querySelector('.jobTitle').textContent.trim();
-      console.log(jobTitle);
+      const jobTitleElement = jobElement.querySelector('.jobTitle');
 
+      const jobTitle = jobTitleElement
+        ? jobTitleElement.textContent.trim()
+        : 'Job title not found';
+      // const jobTitle = jobElement.querySelector('.jobTitle').textContent.trim();
+      // console.log(jobTitle);
+    
       const priceTitleElement = jobElement.querySelector(
         '.metadata.salary-snippet-container'
       );
-      let priceTitle;
+      // let priceTitle;
 
-      if (priceTitleElement !== null) {
-        const childPriceElement = priceTitleElement.querySelector(
-          '.css-1cvo3fd.eu4oa1w0'
-        );
+      // if (priceTitleElement !== null) {
+      //   const childPriceElement = priceTitleElement.querySelector(
+      //     '.css-1cvo3fd.eu4oa1w0'
+      //   );
 
-        priceTitle = childPriceElement.textContent.trim();
-      } else {
-        priceTitle = 'Salary not found';
-      }
+      //   priceTitle = childPriceElement.textContent.trim();
+      // } else {
+      //   priceTitle = 'Salary not found';
+      // }
+      const priceTitle = priceTitleElement
+        ? priceTitleElement.textContent.trim()
+        : 'N/A';
 
       const quickApplyLinkElement = jobElement.querySelector(
         'a.jcs-JobTitle.css-jspxzf.eu4oa1w0'
@@ -82,6 +90,12 @@ indeedController.searchIndeed = async (req, res, next) => {
   res.locals.indeedResults = data;
   await browser.close();
   next();
+  } catch (error) {
+    next({
+      log: 'Error in indeedController',
+      message: { error: 'Error in indeedController'}
+    });
+  }
 };
 
 module.exports = indeedController;
