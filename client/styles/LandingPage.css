@@ -1,0 +1,42 @@
+@tailwind components;
+
+@layer components {
+  #landingPageHeader {
+    @apply flex flex-col items-center justify-center min-h-screen overflow-hidden;
+  }
+
+  #titleDiv {
+    z-index: 30;
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    font-family: pacifico;
+    color: white;
+    font-size: 4.25rem;
+  }
+
+  #logo {
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    z-index: 30;
+    transform: translateX(-50%);
+  }
+
+  #quotesDiv {
+    @apply text-4xl mt-20 text-white text-center z-30;
+    font-family: poppins;
+  }
+  
+  #startButton {
+    @apply relative shadow-2xl hover:scale-125 hover:bg-opacity-50 shadow-white z-30 p-5 text-2xl text-white bg-blue-300 bg-opacity-70 rounded-xl mt-10;
+    font-family: poppins;
+  }
+
+  video {
+      @apply absolute z-10 min-w-full min-h-full;
+  }
+
+}

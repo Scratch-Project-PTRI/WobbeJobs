@@ -5,8 +5,8 @@ import Login from './pages/login-page.jsx';
 import Signup from './pages/signup-page.jsx';
 import Search from './pages/search-page.jsx';
 import EditProfile from './pages/profile-page.jsx';
-import './styles.css';
-import LandingPage from './pages/landing-page.jsx';
+import './styles/styles.css';
+import LandingPage from './pages/LandingPage.jsx';
 import { GoogleOAuthProvider } from '@react-oauth/google'
 
 function App() {
