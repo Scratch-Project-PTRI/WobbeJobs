@@ -5,9 +5,9 @@ import Listing from "../components/Listing.jsx";
 import { Watch } from 'react-loader-spinner';
 const wobblegongImg =
   "https://banner2.cleanpng.com/20180527/gyy/kisspng-tasselled-wobbegong-spotted-wobbegong-bull-shark-d-5b0a328f358497.0765976515273949592192.jpg";
-  import zipRecruiterLogo from '../assets/images/zip.png';
+import zipRecruiterLogo from '../assets/images/zip.png';
 import indeedLogo from '../assets/images/indeed.png';
-
+import video from '../assets/deep_sea2.mp4';
 function Search(props) {
   const navigate = useNavigate();
   const [jobTitle, setJobTitle] = useState("");

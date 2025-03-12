@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
+import video from '../assets/office_walkers.mp4';
 
 function Login(props) {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function Login(props) {
   const handleLogin = (e) => {
     e.preventDefault();
     auth();
+    navigate('/home')
   };
 
   const handleNewAccount = (e) => {
@@ -141,7 +143,7 @@ function Login(props) {
                 // src='https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4'
                 // type="video/mp4"
 
-                src='../assets/office_walkers.mp4' 
+                src={video}
                 type="video/mp4"
             />
         Your browser does not support the video tag.

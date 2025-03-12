@@ -7,7 +7,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 // import video from "../assets/office_walkers.mp4";
 import logo from '../assets/wobbe_mascot2.png';
-
+import video from '../assets/deep_sea2.mp4';
 
 function LandingPage (){
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ function LandingPage (){
                 // src={video}
                 // type="video/mp4"
 
-                src='../assets/deep_sea2.mp4' 
+                src={video}
                 type="video/mp4"
             />
     Your browser does not support the video tag.
